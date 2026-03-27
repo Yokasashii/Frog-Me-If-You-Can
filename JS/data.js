@@ -1,4 +1,4 @@
-const player = {
+const theplayer = {
  name: 'Louis',
  x: 0, y: 0, // Position sur la grille
  stats: {
@@ -13,10 +13,10 @@ const player = {
  inventory: {
     "soin" : 0,
     "café" : 0,
-    // rajouter 8 item
- }, // Tableau d'objets Item
+
+ }, 
  equipment: {
- weapon: null, // Objet Item équipé
+ weapon: null, 
  armor: null,
  accessory: null
  },
