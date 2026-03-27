@@ -13,7 +13,7 @@ const theplayer = {
  inventory: {
     "soin" : 0,
     "café" : 0,
-
+    "vitamine": 0
  }, 
  equipment: {
  weapon: null, 

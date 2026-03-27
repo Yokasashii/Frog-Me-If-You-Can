@@ -19,10 +19,8 @@ class Map{
     }
 
     drawplayer(){
-        c.fillStyle = 'yellow'
-        c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.height, this.hitbox.height)
         c.fillStyle = 'green'
-        c.fillRect(this.position.x+12.5,this.position.y+12.5, 25, 25)
+        c.fillRect(this.position.x,this.position.y, 55, 55)
         
     }
 
@@ -75,40 +73,95 @@ class Map{
         this.drawline()
         this.drawcolumn()
         this.drawPlace() 
-        floor.drawfloor(500,200)
+        floor.drawfloor(300,600)
         floor2.drawfloor(300,600)
         floor3.drawfloor(300,600)
+        floor4.drawfloor(600,150)
+        floor5.drawfloor(600,150)
+        floor6.drawfloor(600,150)
+        floor7.drawfloor(600,150)
+        floor8.drawfloor(600,150)
+        floor9.drawfloor(600,150)
         player.drawplayer()
     }
 }
+
 const player = new Map({
     position:{
-        x:400,
-        y:200
+        x:150,
+        y:75
     },
     velocity : {x:0,y:0} }
 )
 
-const floor= new Map({
+const floor = new Map({
     position:{
-        x:400,
-        y:200
+        x:100,
+        y:25
     },
     velocity : {x:0,y:0} }
 )
 
-const floor2= new Map({
+const floor2 = new Map({
     position:{
-        x:600,
+        x:450,
+        y:25
+    },
+    velocity : {x:0,y:0} }
+)
+
+const floor3 = new Map({
+    position:{
+        x:800,
+        y:25
+    },
+    velocity : {x:0,y:0} }
+)
+
+const floor4 = new Map({
+    position:{
+        x:100,
         y:50
     },
     velocity : {x:0,y:0} }
 )
 
-const floor3= new Map({
+const floor5 = new Map({
     position:{
-        x:200,
+        x:100,
+        y:250
+    },
+    velocity : {x:0,y:0} }
+)
+
+const floor6 = new Map({
+    position:{
+        x:100,
+        y:450
+    },
+    velocity : {x:0,y:0} }
+)
+
+const floor7 = new Map({
+    position:{
+        x:300,
         y:50
+    },
+    velocity : {x:0,y:0} }
+)
+
+const floor8 = new Map({
+    position:{
+        x:300,
+        y:250
+    },
+    velocity : {x:0,y:0} }
+)
+
+const floor9 = new Map({
+    position:{
+        x:300,
+        y:450
     },
     velocity : {x:0,y:0} }
 )
