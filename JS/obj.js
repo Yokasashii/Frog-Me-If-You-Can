@@ -2,13 +2,13 @@ const ObjImg = new Image();
 
 class Obj{
 
-    constructor(){
+    constructor(x,y,height,width){
         this.listeObj = ["café","chocolat","vitamine"]
         this.listImg = "img/tresor.png"
-        this.height = 55
-        this.width = 55
-        this.x = 100
-        this.y = 100
+        this.height = height
+        this.width = width
+        this.x = x
+        this.y = y
         this.verif = 1
     }
 

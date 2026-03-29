@@ -1,17 +1,21 @@
 const canvas = document.getElementById("canvas")
 const c = canvas.getContext('2d')
 
+let player, obj, exit, ennemi1, ennemi2, ennemi3;
 
-
-
-const player = new Player("louis",{x : 100, y : 100}, 10,"img/player.png")
-const obj = new Obj()
-const ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1)
-const ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8)
-const ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6)
-
-
-let lastTime = 0
+function start(){
+    if (player == null){
+        player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 10,"img/player.png")
+    } else {
+        player.setPositionX(hasardEnnemis(canvas.width))
+        player.setPositionY(hasardEnnemis(canvas.height))
+    }
+    obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55)
+    exit = new Exit()
+    ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1)
+    ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8)
+    ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6)
+}
 
 function mapSize(){
     canvas.width = window.innerWidth*8/10
@@ -31,6 +35,8 @@ function draw(){
     c.fillRect(0,0, canvas.width, canvas.height)
     player.draw()
     ennemiC()
+    exit.drawExit()
+    exit.newMap()
     obj.drawObj()
     obj.take()
     drawStats()
@@ -52,5 +58,5 @@ function ennemiC(){
 }
 
 mapSize()
-
+start()
 requestAnimationFrame(draw)
