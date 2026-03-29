@@ -1,21 +1,3 @@
-const ennemi1 = {
- name: 'zombie collègue',
- x: 0, y: 0, // Position sur la grille
- stats: {
- hp: 100, maxHp: 100,
- attack: 15,
- type_Attack: "arme contandante",
- defense: 5,
- speed: 1,
- faiblesse: "arme contandante"
- },
- loot: {
-    xpDrop: 15,
-    goldDrop: 10
- },
- turn: null
-};
-
 const ennemi2 = {
  name: 'zombie secrétaire',
  x: 0, y: 0, // Position sur la grille
