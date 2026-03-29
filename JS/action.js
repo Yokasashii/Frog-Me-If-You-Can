@@ -1,9 +1,13 @@
 const canvas2 = document.getElementById("canvas2")
 const c2 = canvas2.getContext('2d')
 
+function actionSize(){
+    canvas2.width =  window.innerWidth*9.91/10;
+    canvas2.height =  window.innerHeight*1.7/10;
+}
 
-canvas2.width = 1500
-canvas2.height = 200
+actionSize()
+
 
 c2.fillRect(0,0, canvas2.width, canvas2.height)
 

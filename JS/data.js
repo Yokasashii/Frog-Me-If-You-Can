@@ -1,29 +1,3 @@
-const theplayer = {
- name: 'Louis',
- x: 0, y: 0, // Position sur la grille
- stats: {
- hp: 100, maxHp: 100,
- attack: 15,
- defense: 5,
- speed: 5,
- level: 1,
- xp: 0,
- xpToNext: 100
- },
- inventory: {
-    "soin" : 0,
-    "café" : 0,
-    "vitamine": 0
- }, 
- equipment: {
- weapon: null, 
- armor: null,
- accessory: null
- },
- gold: 0,
- turn: null
-};
-
 const ennemi1 = {
  name: 'zombie collègue',
  x: 0, y: 0, // Position sur la grille

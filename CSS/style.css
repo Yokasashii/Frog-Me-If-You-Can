@@ -1,14 +1,18 @@
 body {
-    background-color: black;
-    color: white;
+    background-color: rgb(1, 91, 8);
+    color: rgb(10, 10, 10);
     font-family: Hanalei Fill;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 canvas {
     align-content: center;
     border: solid;
     border-radius: 10px;
+    background-color: rgb(111, 109, 109);
     border-color: white;
+    color: rgb(255, 255, 255);
 }
 
 .hanalei-fill-regular {
