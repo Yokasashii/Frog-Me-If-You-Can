@@ -2,9 +2,9 @@ const ExitImg = new Image();
 
 class Exit{
 
-    constructor(){
-        this.x = 600
-        this.y = 600
+    constructor(x,y){
+        this.x = x
+        this.y = y
         this.img = "img/sorti.png"
         this.width = 55
         this.height = 55
