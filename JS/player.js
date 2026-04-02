@@ -44,6 +44,7 @@ class Player{
     getVelocity(){return this.velocity}
     getImg(){return this.img}
     getStat(){return this.stat}
+    getLife(){return this.stat.hp}
     getInventoryCafe(){return this.inventory.café}
     getInventoryChocolat(){return this.inventory.chocolat}
     getInventoryVitamine(){return this.inventory.vitamine}
@@ -63,6 +64,7 @@ class Player{
     setVelocity(elt){this.velocity = elt}
     setImg(elt){this.img = elt}
     setStat(elt){this.stat = elt}
+    setLife(elt){this.stat.hp = elt}
     setInventoryCafe(elt){this.inventory.café = elt}
     setInventoryChocolat(elt){this.inventory.chocolat = elt}
     setInventoryVitamine(elt){this.inventory.vitamine = elt}

@@ -30,6 +30,14 @@ class Obj{
         this.verif = elt
     }
 
+    setPositionX(elt){
+        this.x = elt
+    }
+
+    setPositionY(elt){
+        this.y = elt
+    }
+
     drawObj(){
         
         ObjImg.src = this.getImg()

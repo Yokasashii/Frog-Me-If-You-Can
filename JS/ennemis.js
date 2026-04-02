@@ -1,6 +1,11 @@
 const ennemisImg = new Image();
+let lastUsed = 0;
+const cooldown = 1500; 
 
 class Ennemis{
+
+    
+
     constructor(x,y,velocity){
         this.name = 'zombie collègue';
         this.img = "img/ennmis.png"
@@ -34,6 +39,7 @@ class Ennemis{
     getStat(){return this.stats}
     getLoot(){return this.loot}
     getTurn(){return this.turn}
+    getLife(){return this.stats.hp}
 
     // setter
 
@@ -45,6 +51,7 @@ class Ennemis{
     setStat(elt){this.stats = elt}
     setLoot(elt){this.loot = elt}
     setTurn(elt){this.turn = elt}
+    setLife(elt){this.stats.hp = elt}
 
     move(){
 
@@ -88,8 +95,16 @@ class Ennemis{
             player.getPositionY() < this.getPositionY() + this.height &&
             player.getPositionY() + 55 > this.getPositionY()
         ) {
+
+            let now = Date.now()
+
+            if (now - lastUsed < cooldown) {
+                console.log("Encore en cooldown !");
+            } else {
+                player.setLife(player.getLife()-10)
+                lastUsed = now
+            }
             
-            console.log("combat")
         }
     }
 
