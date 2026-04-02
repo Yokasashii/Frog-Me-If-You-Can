@@ -5,7 +5,7 @@ class Exit{
     constructor(x,y){
         this.x = x
         this.y = y
-        this.img = "img/sorti.png"
+        this.img = "../img/sorti.png"
         this.width = 55
         this.height = 55
     }

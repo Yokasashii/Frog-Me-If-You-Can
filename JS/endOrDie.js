@@ -63,7 +63,7 @@ const boutonPlay = {
   y: canvasMenu.height / 2 - 140,
   width: boutonWidth,
   height: boutonHeight,
-  message: "Play",
+  message: "New game",
 };
 
 const boutonRank = {

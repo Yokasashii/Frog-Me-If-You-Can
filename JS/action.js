@@ -32,38 +32,48 @@ function drawbutton(bouton){
     );
 }
 
-const bouton1 = {
-    x: 175,
-    y: 45,
+
+const bouton = {
+    x: 25,
+    y: 60,
     width: 250,
     height:100,
-    message: "Consomable"
+    message: "espace attaque"
+}
+
+const bouton1 = {
+    x: 285,
+    y: 60,
+    width: 250,
+    height:100,
+    message: "1 Consomable"
 }
 
 const bouton2 = {
-    x: 500,
-    y: 45,
+    x: 545,
+    y: 60,
     width: 250,
     height:100,
-    message: "Amélioraton"
+    message: "2 Amélioraton"
 }
 
 const bouton3 = {
-    x: 850,
-    y: 45,
+    x: 805,
+    y: 60,
     width: 250,
     height:100,
-    message: "Équipement"
+    message: "3 Équipement"
 }
 
 const bouton4 = {
-    x: 1175,
-    y: 45,
+    x: 1065,
+    y: 60,
     width: 250,
     height:100,
-    message: "Abandonner"
+    message: "4 Abandonner"
 }
 
+drawbutton(bouton)
 drawbutton(bouton1)
 drawbutton(bouton2)
 drawbutton(bouton3)

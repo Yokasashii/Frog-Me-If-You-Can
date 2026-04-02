@@ -114,4 +114,10 @@ class Player{
             c.drawImage(playerImg, this.getPositionX(), this.getPositionY(), 55, 55)
         }
     }
+
+    die(){
+        if (this.getLife() <= 0){
+            window.location.href = "die.html";
+        }
+    }
 };

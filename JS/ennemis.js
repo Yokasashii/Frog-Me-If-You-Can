@@ -8,7 +8,7 @@ class Ennemis{
 
     constructor(x,y,velocity){
         this.name = 'zombie collègue';
-        this.img = "img/ennmis.png"
+        this.img = "../img/ennmis.png"
         this.x = x;
         this.y = y; 
         this.width = 55
