@@ -15,7 +15,7 @@ c2.font = "30px Arial";
 
 c2.fillStyle = "white";
 
-c2.fillText("Action :", 30, 50);
+c2.fillText("Touche :", 30, 50);
 
 function drawbutton(bouton){
     c2.fillStyle = 'grey'
@@ -46,7 +46,7 @@ const bouton1 = {
     y: 60,
     width: 250,
     height:100,
-    message: "1 Consomable"
+    message: "1 Chocolat"
 }
 
 const bouton2 = {
@@ -54,7 +54,7 @@ const bouton2 = {
     y: 60,
     width: 250,
     height:100,
-    message: "2 Amélioraton"
+    message: "2 café"
 }
 
 const bouton3 = {
@@ -62,7 +62,7 @@ const bouton3 = {
     y: 60,
     width: 250,
     height:100,
-    message: "3 Équipement"
+    message: "3 Amélioraton"
 }
 
 const bouton4 = {

@@ -5,7 +5,7 @@ let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4, ennemi5, nb;
 
 function start(){
     if (player == null){
-        player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 10,"../img/player.png")
+        player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 5,"../img/player.png")
     } else {
         player.setPositionX(hasardEnnemis(canvas.width))
         player.setPositionY(hasardEnnemis(canvas.height))

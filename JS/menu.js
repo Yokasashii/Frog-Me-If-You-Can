@@ -46,12 +46,15 @@ canvasMenu.addEventListener("click", (e) => {
   if (isClicking(boutonPlay, x, y)) {
     window.location.href = "HTML/game.html";
   }
+
   if (isClicking(boutonRank, x, y)) {
     console.log("Rank");
   }
+
   if (isClicking(boutonQuit, x, y)) {
     console.log("Quit");
   }
+  
 });
 
 const boutonWidth = canvasMenu.width / 3;
