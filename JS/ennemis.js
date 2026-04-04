@@ -1,32 +1,20 @@
 const ennemisImg = new Image();
-let lastUsed = 0;
-const cooldown = 1500; 
+let enemyLastUsed = 0;
+const enemyCooldown = 1500; 
+
 
 class Ennemis{
 
-    
-
-    constructor(x,y,velocity){
+    constructor(x,y,velocity,width,height,attack){
         this.name = 'zombie collègue';
         this.img = "../img/ennmis.png"
         this.x = x;
         this.y = y; 
-        this.width = 55
-        this.height = 55
+        this.width = width
+        this.height = height
         this.velocity = velocity
-        this.stats = {
-            hp: 100, maxHp: 100,
-            attack: 15,
-            type_Attack: "arme contandante",
-            defense: 5,
-            speed: 1,
-            faiblesse: "arme contandante"
-        };
-        this.loot = {
-            xpDrop: 15,
-            goldDrop: 10
-        };
-        this.turn = null;
+        this.hp= 30
+        this.attack = attack
     }
 
     // getter
@@ -35,11 +23,14 @@ class Ennemis{
     getImg(){return this.img}
     getPositionX(){return this.x}
     getPositionY(){return this.y}
+    getWidth(){return this.width}
+    getHeight(){return this.height}
     getVelocity(){return this.velocity}
     getStat(){return this.stats}
     getLoot(){return this.loot}
     getTurn(){return this.turn}
-    getLife(){return this.stats.hp}
+    getLife(){return this.hp}
+    getAttack(){return this.attack}
 
     // setter
 
@@ -47,11 +38,14 @@ class Ennemis{
     setImg(elt){this.img = elt}
     setPositionX(elt){this.x = elt}
     setPositionY(elt){this.y = elt}
+    setWidth(elt){this.width = elt}
+    setHeight(elt){this.height = elt}
     setVelocity(elt){this.velocity = elt}
     setStat(elt){this.stats = elt}
     setLoot(elt){this.loot = elt}
     setTurn(elt){this.turn = elt}
-    setLife(elt){this.stats.hp = elt}
+    setLife(elt){this.hp = elt}
+    setAttack(elt){this.attack = elt}
 
     move(){
 
@@ -82,10 +76,6 @@ class Ennemis{
                 this.setPositionX(this.getPositionX()+movement)
             }
         }
-
-        if (ennemisImg.complete) {
-            c.drawImage(ennemisImg, this.getPositionX(), this.getPositionY(), 55, 55)
-        }
     }
 
     fight(){
@@ -98,20 +88,29 @@ class Ennemis{
 
             let now = Date.now()
 
-            if (now - lastUsed < cooldown) {
+            if (now - enemyLastUsed < enemyCooldown) {
                 console.log("Encore en cooldown !");
             } else {
-                player.setLife(player.getLife()-10)
-                lastUsed = now
+                player.setLife(player.getLife()-this.getAttack())
+                    
+                enemyLastUsed = now
             }
             
         }
     }
 
     drawEnnemis(){
-        ennemisImg.src = this.getImg()
-        if (ennemisImg.complete) {
-            c.drawImage(ennemisImg, this.getPositionX(), this.getPositionY(), 55, 55)
+        if (this.getLife()>0){
+            ennemisImg.src = this.getImg()
+            if (ennemisImg.complete) {
+                c.drawImage(ennemisImg, this.getPositionX(), this.getPositionY(), 55, 55)
+            }
+        } else {
+            this.setHeight(0)
+            this.setWidth(0)
+            this.setVelocity(0)
+            this.setAttack(0)
         }
+        
     }
 }

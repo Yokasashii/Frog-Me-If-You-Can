@@ -1,4 +1,10 @@
 const playerImg = new Image();
+const attackZoneImgN = new Image();
+const attackZoneImgS = new Image();
+const attackZoneImgW = new Image();
+const attackZoneImgE = new Image();
+let lastUsed = 0;
+const cooldown = 500; 
 
 class Player{
 
@@ -20,14 +26,20 @@ class Player{
             "chocolatMax" : 10,
             "caféMax" : 10,
             "vitamineMAx": 10
-        },
+        }
         this.equipment = {
             weapon: null, 
             armor: null,
             accessory: null
-        },
-        this.gold = 0,
+        }
+        this.gold = 0
         this.score = 0
+        this.attackImg = "../img/attackZone.png"
+        this.heAttack = false
+        this.north = false
+        this.south = false
+        this.west = false
+        this.est = false
     }
 
     //getter
@@ -55,6 +67,12 @@ class Player{
     getEquipement(){return this.equipment}
     getGold(){return this.gold}
     getScore(){return this.score}
+    getAttackImg(){return this.attackImg}
+    getheAttack(){return this.heAttack}
+    getNorth(){return this.north}
+    getSouth(){return this.south}
+    getWest(){return this.west}
+    getEst(){return this.est}
 
     //setter
 
@@ -81,6 +99,12 @@ class Player{
     setEquipement(elt){this.equipment = elt}
     setGold(elt){this.gold = elt}
     setScore(elt){this.score = elt}
+    setAttackImg(elt){this.attackImg = elt}
+    setheAttack(elt){this.heAttack = elt}
+    setNorth(elt){this.north = elt}
+    setSouth(elt){this.south = elt}
+    setWest(elt){this.west = elt}
+    setEst(elt){this.est = elt}
 
 
     move(){
@@ -88,6 +112,10 @@ class Player{
         const movement = this.getVelocity()
         
         playerImg.src = this.getImg()
+        attackZoneImgN.src = this.getAttackImg()
+        attackZoneImgS.src = this.getAttackImg()
+        attackZoneImgW.src = this.getAttackImg()
+        attackZoneImgE.src = this.getAttackImg()
 
         // basic move
 
@@ -95,24 +123,32 @@ class Player{
             if (this.getPositionY()>0) {
                 this.setPositionY(this.getPositionY()-movement)
             }
+            this.setNorth(true)
+            this.setSouth(false)
         }
 
         if (keys.get('KeyS')){
             if (this.getPositionY()+55<canvas.height){
                 this.setPositionY(this.getPositionY()+movement)
             }
+            this.setNorth(false)
+            this.setSouth(true)
         }
 
         if (keys.get('KeyA')){
             if (this.getPositionX()>0){
                 this.setPositionX(this.getPositionX()-movement)
             }
+            this.setWest(true)
+            this.setEst(false)
         }
 
         if (keys.get('KeyD')){
             if (this.getPositionX()+55<canvas.width){
                 this.setPositionX(this.getPositionX()+movement)
             }
+            this.setWest(false)
+            this.setEst(true)
         }
         if (keys.get('KeyW') && keys.get("ShiftLeft") && this.getMp()>0){
             if (this.getPositionY()>0) {
@@ -143,6 +179,12 @@ class Player{
         }
 
         //player action
+        if (keys.get('Space')){
+            this.setheAttack(true)
+            
+        } else {
+            this.setheAttack(false)
+        }
 
         if (keys.get('Digit1')){
             if (this.getInventoryChocolat()>0 && this.getLife() < 100){
@@ -182,14 +224,35 @@ class Player{
         }
         
 
-        if (playerImg.complete) {
-            c.drawImage(playerImg, this.getPositionX(), this.getPositionY(), 55, 55)
-        }
     }
 
     // draw the player
 
     draw(){
+        if (this.getNorth()){
+            if (attackZoneImgN.complete) {
+            c.drawImage(attackZoneImgN, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
+            }
+        }
+        
+        if (this.getSouth()){
+            if (attackZoneImgS.complete) {
+                c.drawImage(attackZoneImgS, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
+            }
+        }
+
+        if (this.getWest()){
+            if (attackZoneImgW.complete) {
+                c.drawImage(attackZoneImgW, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
+            }
+        }
+
+        if (this.getEst()){
+            if (attackZoneImgE.complete) {
+                c.drawImage(attackZoneImgE, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
+            }
+        }
+        
         if (playerImg.complete) {
             c.drawImage(playerImg, this.getPositionX(), this.getPositionY(), 55, 55)
         }
@@ -200,6 +263,27 @@ class Player{
     die(){
         if (this.getLife() <= 0){
             window.location.href = "die.html";
+        }
+    }
+
+    attackMoment(){
+
+        if (this.getheAttack()){
+            if (this.getNorth()){
+
+            }
+
+            if (this.getSouth()){
+                
+            }
+
+            if (this.getWest()){
+                
+            }
+
+            if (this.getEst()){
+                
+            }
         }
     }
 };

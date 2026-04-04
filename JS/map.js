@@ -13,7 +13,7 @@ function start(){
         player.setPositionY(hasardEnnemis(canvas.height))
     }
     // ramdom parameter of the findobject localisation
-    obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55)
+    obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55,10)
 
     if (obj.getPositionX() < canvas.width/2){
         obj.setPositionX(obj.getPositionX() + 20)
@@ -41,22 +41,16 @@ function start(){
         exit.setPositionY(exit.getPositionY() - 20)
     }
     // ramdom number of ennemys
-    nb = hasardEnnemis(6)
-    if (nb == 0 ||nb == 1 || nb == 2 || nb == 3){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6)
-    } else if (nb == 4){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6)
-        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4)
-    } else if (nb == 5){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6)
-        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4)
-        ennemi5 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.2)
+    nb = hasardEnnemis(3)
+    if (nb == 0){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
+    } else if (nb == 1 || nb == 2){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,10)
+    } else if (nb == 3){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,10)
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,10)
     }
 }
 
@@ -86,9 +80,11 @@ function win(stateGame){
 
 
 //draw the game and update the map
+
 function draw(){
     
     player.move()
+    player.attackMoment()
     player.die()
 
     requestAnimationFrame(draw)
@@ -106,7 +102,12 @@ function draw(){
 
 //ennemy generation
 function ennemiC(){
-    if (nb == 0 ||nb == 1 || nb == 2 || nb == 3){
+    if (nb == 0 ||nb == 1){
+        ennemi1.drawEnnemis()
+        ennemi1.move()
+        ennemi1.fight()
+
+    } else if (nb == 2){
         ennemi1.drawEnnemis()
         ennemi1.move()
         ennemi1.fight()
@@ -115,26 +116,7 @@ function ennemiC(){
         ennemi2.move()
         ennemi2.fight()
 
-        ennemi3.drawEnnemis()
-        ennemi3.move()
-        ennemi3.fight()
-    } else if (nb == 4){
-        ennemi1.drawEnnemis()
-        ennemi1.move()
-        ennemi1.fight()
-
-        ennemi2.drawEnnemis()
-        ennemi2.move()
-        ennemi2.fight()
-
-        ennemi3.drawEnnemis()
-        ennemi3.move()
-        ennemi3.fight()
-
-        ennemi4.drawEnnemis()
-        ennemi4.move()
-        ennemi4.fight()
-    } else if (nb == 5){
+    } else if (nb == 3){
         ennemi1.drawEnnemis()
         ennemi1.move()
         ennemi1.fight()
@@ -147,13 +129,6 @@ function ennemiC(){
         ennemi3.move()
         ennemi3.fight()
 
-        ennemi4.drawEnnemis()
-        ennemi4.move()
-        ennemi4.fight()
-
-        ennemi5.drawEnnemis()
-        ennemi5.move()
-        ennemi5.fight()
     }
     
 }
