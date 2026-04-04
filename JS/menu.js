@@ -1,6 +1,7 @@
 const canvasMenu = document.getElementById("canvasMenu");
 const cMenu = canvasMenu.getContext("2d");
 
+// menu size configuration
 function menuSize() {
   canvasMenu.width = window.innerWidth - 20;
   canvasMenu.height = window.innerHeight - 20;
@@ -56,6 +57,9 @@ canvasMenu.addEventListener("click", (e) => {
   }
   
 });
+
+
+//button configuration
 
 const boutonWidth = canvasMenu.width / 3;
 const boutonHeight = 100;

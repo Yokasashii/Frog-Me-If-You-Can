@@ -1,6 +1,7 @@
 const canvas2 = document.getElementById("canvas2")
 const c2 = canvas2.getContext('2d')
 
+//configurattion 
 function actionSize(){
     canvas2.width =  window.innerWidth*9.91/10;
     canvas2.height =  window.innerHeight*1.7/10;
@@ -17,23 +18,23 @@ c2.fillStyle = "white";
 
 c2.fillText("Touche :", 30, 50);
 
-function drawbutton(bouton){
+function drawbutton(TheButton){
     c2.fillStyle = 'grey'
-    c2.fillRect(bouton.x,bouton.y,bouton.width,bouton.height)
+    c2.fillRect(TheButton.x,TheButton.y,TheButton.width,TheButton.height)
 
     c2.fillStyle = "white";
     c2.font = "20px Arial";
     c2.textAlign = "center";
     c2.textBaseline = "middle";
     c2.fillText(
-        bouton.message,
-        bouton.x + bouton.width / 2,
-        bouton.y + bouton.height / 2
+        TheButton.message,
+        TheButton.x + TheButton.width / 2,
+        TheButton.y + TheButton.height / 2
     );
 }
 
-
-const bouton = {
+// all type of button
+const button = {
     x: 25,
     y: 60,
     width: 250,
@@ -41,7 +42,7 @@ const bouton = {
     message: "espace attaque"
 }
 
-const bouton1 = {
+const button1 = {
     x: 285,
     y: 60,
     width: 250,
@@ -49,7 +50,7 @@ const bouton1 = {
     message: "1 Chocolat"
 }
 
-const bouton2 = {
+const button2 = {
     x: 545,
     y: 60,
     width: 250,
@@ -57,7 +58,7 @@ const bouton2 = {
     message: "2 café"
 }
 
-const bouton3 = {
+const button3 = {
     x: 805,
     y: 60,
     width: 250,
@@ -65,7 +66,7 @@ const bouton3 = {
     message: "3 Amélioraton"
 }
 
-const bouton4 = {
+const button4 = {
     x: 1065,
     y: 60,
     width: 250,
@@ -73,11 +74,13 @@ const bouton4 = {
     message: "4 Abandonner"
 }
 
-drawbutton(bouton)
-drawbutton(bouton1)
-drawbutton(bouton2)
-drawbutton(bouton3)
-drawbutton(bouton4)
+// draw all button
+
+drawbutton(button)
+drawbutton(button1)
+drawbutton(button2)
+drawbutton(button3)
+drawbutton(button4)
 
 document.addEventListener('click', (event) => {
     const x = event.offsetX;

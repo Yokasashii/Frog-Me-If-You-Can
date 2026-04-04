@@ -2,7 +2,7 @@ const playerImg = new Image();
 
 class Player{
 
-    // constructor
+    // constructor of player
 
     constructor(name,position,velocity,img) {
         this.name = name

@@ -26,6 +26,7 @@ class Exit{
     setWidth(elt){this.width = elt}
     setHeight(elt){this.height = elt}
 
+    // draw the exit
     drawExit(){
         ExitImg.src = this.getImg()
         if (ExitImg.complete) {
@@ -33,6 +34,7 @@ class Exit{
             }
     }
 
+    // new stage
     newMap(){
         if (
             keys.get('KeyE') &&

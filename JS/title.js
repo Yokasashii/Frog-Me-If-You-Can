@@ -1,6 +1,7 @@
 const canvastitle = document.getElementById("title")
 const cT = canvastitle.getContext('2d')
 
+//title size configuration
 function titleSize(){
     canvastitle.width = window.innerWidth*9.91/10;
     canvastitle.height = window.innerHeight*0.5/10

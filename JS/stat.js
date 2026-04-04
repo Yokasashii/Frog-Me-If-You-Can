@@ -1,6 +1,8 @@
 const canvas1 = document.getElementById("canvas1")
 const c1 = canvas1.getContext('2d')
 
+//stat era configuration
+
     function statSize(){
         canvas1.width = window.innerWidth*1.8/10
         canvas1.height = window.innerHeight*7.5/10;

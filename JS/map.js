@@ -3,6 +3,8 @@ const c = canvas.getContext('2d')
 
 let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4, ennemi5, nb;
 
+
+// start parameter of a stage
 function start(){
     if (player == null){
         player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 5,"../img/player.png")
@@ -10,6 +12,7 @@ function start(){
         player.setPositionX(hasardEnnemis(canvas.width))
         player.setPositionY(hasardEnnemis(canvas.height))
     }
+    // ramdom parameter of the findobject localisation
     obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55)
 
     if (obj.getPositionX() < canvas.width/2){
@@ -24,6 +27,7 @@ function start(){
         obj.setPositionY(obj.getPositionY() - 20)
     }
 
+    // ramdom parameter of the exit localisation
     exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height))
     if (exit.getPositionX() < canvas.width/2){
         exit.setPositionX(exit.getPositionX() + 20)
@@ -36,6 +40,7 @@ function start(){
     }else {
         exit.setPositionY(exit.getPositionY() - 20)
     }
+    // ramdom number of ennemys
     nb = hasardEnnemis(6)
     if (nb == 0 ||nb == 1 || nb == 2 || nb == 3){
         ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1)
@@ -55,15 +60,7 @@ function start(){
     }
 }
 
-function drawDefeat(){
-
-}
-
-function drawWin(){
-
-}
-
-
+//map configuaration
 function mapSize(){
     canvas.width = window.innerWidth*8/10
     canvas.height = window.innerHeight*7.5/10;
@@ -73,6 +70,7 @@ function hasardEnnemis(max){
         return Math.floor(Math.random() * max);
     }
 
+    
 function loose(){
     if (player.getLife() <= 0){
         drawDefeat()
@@ -86,6 +84,8 @@ function win(stateGame){
     }
 }
 
+
+//draw the game and update the map
 function draw(){
     
     player.move()
@@ -95,8 +95,6 @@ function draw(){
     c.fillStyle = 'grey'
     c.fillRect(0,0, canvas.width, canvas.height)
     player.draw()
-    loose()
-    win(false)
     ennemiC()
     exit.drawExit()
     exit.newMap()
@@ -106,7 +104,7 @@ function draw(){
 }
 
 
-
+//ennemy generation
 function ennemiC(){
     if (nb == 0 ||nb == 1 || nb == 2 || nb == 3){
         ennemi1.drawEnnemis()
