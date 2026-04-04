@@ -2,12 +2,13 @@ const ExitImg = new Image();
 
 class Exit{
 
-    constructor(x,y){
+    constructor(x,y,statusExit){
         this.x = x
         this.y = y
         this.img = "../img/sorti.png"
         this.width = 55
         this.height = 55
+        this.statusExit = statusExit
     }
 
     // getter
@@ -17,6 +18,7 @@ class Exit{
     getImg(){return this.img}
     getWidth(){return this.width}
     getHeight(){return this.height}
+    getStatusExit(){return this.statusExit}
 
     // setter
 
@@ -25,6 +27,7 @@ class Exit{
     setImg(elt){this.img = elt}
     setWidth(elt){this.width = elt}
     setHeight(elt){this.height = elt}
+    setStatusExit(elt){this.statusExit = elt}
 
     // draw the exit
     drawExit(){
@@ -43,7 +46,9 @@ class Exit{
             player.getPositionY() < this.getPositionY() + this.height &&
             player.getPositionY() + 55 > this.getPositionY()
         ) {
+            this.setStatusExit(true)
             console.log("reset")
+            actualScore()
             start()
         }
     }

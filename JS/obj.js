@@ -9,15 +9,12 @@ class Obj{
         this.width = width
         this.x = x
         this.y = y
-        this.verif = 1
     }
 
     getList(){return this.listeObj}
     getPositionX(){return this.x}
     getPositionY(){return this.y}
     getImg(){return this.listImg}
-    
-    setverif(elt){this.verif = elt}
     setPositionX(elt){this.x = elt}
     setPositionY(elt){this.y = elt}
 

@@ -5,7 +5,7 @@ const enemyCooldown = 1500;
 
 class Ennemis{
 
-    constructor(x,y,velocity,width,height,attack){
+    constructor( x, y, velocity, width, height, attack, hp, statusLife, special){
         this.name = 'zombie collègue';
         this.img = "../img/ennmis.png"
         this.x = x;
@@ -13,8 +13,10 @@ class Ennemis{
         this.width = width
         this.height = height
         this.velocity = velocity
-        this.hp= 30
+        this.hp= hp
         this.attack = attack
+        this.statusLife = statusLife
+        this.special = special
     }
 
     // getter
@@ -26,11 +28,10 @@ class Ennemis{
     getWidth(){return this.width}
     getHeight(){return this.height}
     getVelocity(){return this.velocity}
-    getStat(){return this.stats}
-    getLoot(){return this.loot}
-    getTurn(){return this.turn}
     getLife(){return this.hp}
     getAttack(){return this.attack}
+    getStatusLife(){return this.statusLife}
+    getSpecial(){return this.special}
 
     // setter
 
@@ -41,11 +42,10 @@ class Ennemis{
     setWidth(elt){this.width = elt}
     setHeight(elt){this.height = elt}
     setVelocity(elt){this.velocity = elt}
-    setStat(elt){this.stats = elt}
-    setLoot(elt){this.loot = elt}
-    setTurn(elt){this.turn = elt}
     setLife(elt){this.hp = elt}
     setAttack(elt){this.attack = elt}
+    setStatusLife(elt){this.statusLife = elt}
+    setSpecial(elt){this.special = elt}
 
     move(){
 
@@ -110,6 +110,7 @@ class Ennemis{
             this.setWidth(0)
             this.setVelocity(0)
             this.setAttack(0)
+            this.setStatusLife(true)
         }
         
     }

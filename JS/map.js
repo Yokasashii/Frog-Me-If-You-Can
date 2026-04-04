@@ -1,11 +1,13 @@
 const canvas = document.getElementById("canvas")
 const c = canvas.getContext('2d')
 
-let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4, ennemi5, nb;
+let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4, nb;
 
 
 // start parameter of a stage
 function start(){
+
+
     if (player == null){
         player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 5,"../img/player.png")
     } else {
@@ -28,7 +30,7 @@ function start(){
     }
 
     // ramdom parameter of the exit localisation
-    exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height))
+    exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
     if (exit.getPositionX() < canvas.width/2){
         exit.setPositionX(exit.getPositionX() + 20)
     }else {
@@ -43,19 +45,19 @@ function start(){
     // ramdom number of ennemys
     nb = hasardEnnemis(5)
     if (nb == 0){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false ,"runner")
     } else if (nb == 1 || nb == 2){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,10)
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false,"runner")
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35, "normal")
     } else if (nb == 3){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,10)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,10)
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,20,false,"runner")
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal")
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,75,75,35,10,false, "fat")
     } else if (nb == 4){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,10)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,10)
-        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,10)
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,10,false,"runner")
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal")
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,100,100,35,75,false,"fat")
+        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,20,35,false, "stopper")
     }
 }
 
@@ -69,19 +71,6 @@ function hasardEnnemis(max){
         return Math.floor(Math.random() * max);
     }
 
-    
-function loose(){
-    if (player.getLife() <= 0){
-        drawDefeat()
-    }
-    
-}
-
-function win(stateGame){
-    if (stateGame){
-        drawWin()
-    }
-}
 
 
 //draw the game and update the map
@@ -153,6 +142,41 @@ function ennemiC(){
     } 
     
 }
+
+function actualScore(){
+
+    if(ennemi1.getStatusLife()){
+        player.setScore(player.getScore()+150)
+        ennemi1.setStatusLife(false)
+    }
+
+    if (ennemi2 != null){
+        if(ennemi2.getStatusLife()){
+            player.setScore(player.getScore()+100)
+            ennemi2.setStatusLife(false)
+        }
+    }
+    
+    if (ennemi3 != null){
+        if(ennemi3.getStatusLife()){
+            player.setScore(player.getScore()+300)
+            ennemi3.setStatusLife(false)
+        }
+    }
+
+    if (ennemi4 != null){
+        if(ennemi4.getStatusLife()){
+            player.setScore(player.getScore()+100)
+            ennemi4.setStatusLife(false)
+        }
+    }
+
+    if(exit.getStatusExit()){
+        player.setScore(player.getScore()+100)
+        exit.setStatusExit(false)
+    }
+}
+
 
 mapSize()
 start()

@@ -16,7 +16,7 @@ class Player{
         this.velocity = velocity
         this.img = img
         this.stat = {
-            hp: 100, maxHp: 100, mp : 50, el : 0, mpMax : 50, elMax : 5,
+            hp: 1000000, maxHp: 100, mp : 50, el : 0, mpMax : 50, elMax : 5,
             attack: 15,
             level: 1,}
         this.inventory = {
@@ -309,31 +309,31 @@ class Player{
 
         if (this.getheAttack()){
             if (this.getNorth()){
-                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi1, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
+                this.hitTheGoodGuy(ennemi2, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
+                this.hitTheGoodGuy(ennemi3, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
+                this.hitTheGoodGuy(ennemi4, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
             }
 
             if (this.getSouth()){
-                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi1, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
+                this.hitTheGoodGuy(ennemi2, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
+                this.hitTheGoodGuy(ennemi3, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
+                this.hitTheGoodGuy(ennemi4, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
             }
 
             if (this.getWest()){
-                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi1, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
+                this.hitTheGoodGuy(ennemi2, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
+                this.hitTheGoodGuy(ennemi3, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
+                this.hitTheGoodGuy(ennemi4, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
             }
 
             if (this.getEst()){
-                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
-                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi1, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
+                this.hitTheGoodGuy(ennemi2, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
+                this.hitTheGoodGuy(ennemi3, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
+                this.hitTheGoodGuy(ennemi4, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
             }
         }
     }
