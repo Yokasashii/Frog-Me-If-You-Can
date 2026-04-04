@@ -187,7 +187,7 @@ class Player{
         }
 
         if (keys.get('Digit1')){
-            if (this.getInventoryChocolat()>0 && this.getLife() < 100){
+            if (this.getInventoryChocolat()>0 && this.getLife() < this.getMaxLife()){
                 this.setLife(this.getLife()+10)
                 this.setInventoryChocolat(this.getInventoryChocolat()-1)
             }
@@ -195,7 +195,7 @@ class Player{
 
 
         if (keys.get('Digit2')){
-            if (this.getInventoryCafe()>0 && this.getMp() < 50){
+            if (this.getInventoryCafe()>0 && this.getMp() < this.getMaxMp()){
                 this.setMp(this.getMp()+10)
                 if (this.getMp()>this.getMaxMp()){
                     this.setMp(this.getMaxMp())
@@ -266,23 +266,74 @@ class Player{
         }
     }
 
+    hitTheGoodGuy(enemy,attackPositionX,attackPositionY,height,width){
+        if (!enemy){
+            return
+        }
+
+        if (
+            attackPositionX < enemy.getPositionX() + 55 &&
+            attackPositionX + width > enemy.getPositionX() &&
+            attackPositionY < enemy.getPositionY() + 55 &&
+            attackPositionY + height > enemy.getPositionY()
+        ) {
+
+            let now = Date.now()
+
+            if (now - lastUsed < cooldown) {
+                console.log("Encore en cooldown !");
+            } else {
+                enemy.setLife(enemy.getLife() - this.getAttack())
+                if (this.getNorth()){
+                    enemy.setPositionY(enemy.getPositionY()-100)
+                }
+
+                if (this.getSouth()){
+                    enemy.setPositionY(enemy.getPositionY()+100)
+                }
+
+                if (this.getEst()){
+                    enemy.setPositionX(enemy.getPositionX()+100)
+                }
+
+                if (this.getWest()){
+                    enemy.setPositionX(enemy.getPositionX()-100)
+                }
+                lastUsed = now
+            }
+            
+        }
+    }
+
     attackMoment(){
 
         if (this.getheAttack()){
             if (this.getNorth()){
-
+                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
             }
 
             if (this.getSouth()){
-                
+                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
             }
 
             if (this.getWest()){
-                
+                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
             }
 
             if (this.getEst()){
-                
+                this.hitTheGoodGuy(ennemi1,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi2,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi3,player.getPositionX(),player.getPositionY(),110,110)
+                this.hitTheGoodGuy(ennemi4,player.getPositionX(),player.getPositionY(),110,110)
             }
         }
     }

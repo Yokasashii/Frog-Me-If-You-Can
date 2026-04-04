@@ -41,7 +41,7 @@ function start(){
         exit.setPositionY(exit.getPositionY() - 20)
     }
     // ramdom number of ennemys
-    nb = hasardEnnemis(3)
+    nb = hasardEnnemis(5)
     if (nb == 0){
         ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
     } else if (nb == 1 || nb == 2){
@@ -51,6 +51,11 @@ function start(){
         ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
         ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,10)
         ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,10)
+    } else if (nb == 4){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1,55,55,10)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,10)
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,10)
+        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,10)
     }
 }
 
@@ -129,7 +134,23 @@ function ennemiC(){
         ennemi3.move()
         ennemi3.fight()
 
-    }
+    } else if (nb == 4){
+        ennemi1.drawEnnemis()
+        ennemi1.move()
+        ennemi1.fight()
+
+        ennemi2.drawEnnemis()
+        ennemi2.move()
+        ennemi2.fight()
+
+        ennemi3.drawEnnemis()
+        ennemi3.move()
+        ennemi3.fight()
+
+        ennemi4.drawEnnemis()
+        ennemi4.move()
+        ennemi4.fight()
+    } 
     
 }
 
