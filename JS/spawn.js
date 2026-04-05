@@ -1,8 +1,4 @@
 function playerSpawn(player){
-    if (player == null){
-        player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 5,"../img/player.png")
-    } 
-
     let theX = 0
     let theY = 0
     while (currentMap[canvasToMatrixX(theY, canvas)][canvasToMatrixY(theX, canvas)] != " "){
@@ -10,7 +6,13 @@ function playerSpawn(player){
         theY = hasardEnnemis(canvas.height)
     }
     
-    player = new Player("louis",{x : theX, y : theY}, 5,"../img/player.png")
+    if (player == null){
+        player = new Player("louis",{x : theX, y : theY}, 5,"../img/player.png")
+    } else {
+        player.setPositionX(theX)
+        player.setPositionY(theY)
+    }
+
     return player
 }
 
@@ -26,9 +28,7 @@ function ObjSpawn(obj){
 }
 
 function exitSpawn(exit){
-    if (exit == null) {
-        exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
-    }
+    exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
 
     while (currentMap[canvasToMatrixX(exit.getPositionY(), canvas)][canvasToMatrixY(exit.getPositionX(), canvas)] != " "){
         exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
