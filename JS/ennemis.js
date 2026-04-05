@@ -57,25 +57,25 @@ class Ennemis{
         ennemisImg.src = this.getImg()
 
         if (player.getPositionY()< this.getPositionY()){
-            if (this.getPositionY()>0) {
+            if (currentMap[canvasToMatrixX(this.getPositionY() - movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " ") {
                 this.setPositionY(this.getPositionY()-movement)
             }
         }
 
         if (player.getPositionY()> this.getPositionY()){
-            if (this.getPositionY()+55<canvas.height){
+            if (currentMap[canvasToMatrixX(this.getPositionY()+ 55 + movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " "){
                 this.setPositionY(this.getPositionY()+movement)
             }
         }
 
         if (player.getPositionX()< this.getPositionX()){
-            if (this.getPositionX()>0){
+            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()- movement, canvas)] == " "){
                 this.setPositionX(this.getPositionX()-movement)
             }
         }
 
         if (player.getPositionX()> this.getPositionX()){
-            if (this.getPositionX()+55<canvas.width){
+            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+ 55 + movement, canvas)] == " "){
                 this.setPositionX(this.getPositionX()+movement)
             }
         }

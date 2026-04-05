@@ -69,6 +69,8 @@ function drawTheTitle(){
     cDie.fillText(" Frog me if you can !", canvasDie.width*3/10, canvasDie.height*0.5/3 );
     cDie.font = "50px Arial";
     cDie.fillText(" YOU DIED, do you want to retry ?", canvasDie.width*3.25/10, canvasDie.height*1/3 );
+    cDie.font = "30px Arial";
+    cDie.fillText("a game by : Vincent Guerini and Maxime Poujol", canvasDie.width*3.6/10, canvasDie.height*2.5/3 );
 }
 
 //configuration button

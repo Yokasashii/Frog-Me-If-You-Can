@@ -1,121 +1,59 @@
 const canvas = document.getElementById("canvas")
 const c = canvas.getContext('2d')
 
-let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb;
+let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb,currentMap;
+let currentMapIndex = 0;
 
 
 //first start parameter of a stage
 function start(){
 
-    if (player == null){
-        player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 5,"../img/player.png")
-    } else {
-        player.setPositionX(hasardEnnemis(canvas.width))
-        player.setPositionY(hasardEnnemis(canvas.height))
+    currentMapIndex = hasardEnnemis(Matricelist.length)
+    currentMap = Matricelist[currentMapIndex]
+    onTheMap(currentMap)
+
+    if (player != null){
+        actualScore()
     }
+    player = playerSpawn(player)
     // ramdom parameter of the findobject localisation
-    obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55,10)
-
-    if (obj.getPositionX() < canvas.width/2){
-        obj.setPositionX(obj.getPositionX() + 20)
-    }else {
-        obj.setPositionX(obj.getPositionX() - 20)
-    }
-
-    if (obj.getPositionY() < canvas.height/2){
-        obj.setPositionY(obj.getPositionY() + 20)
-    }else {
-        obj.setPositionY(obj.getPositionY() - 20)
-    }
-
+    obj = ObjSpawn(obj)
     // ramdom parameter of the exit localisation
-    exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
-    if (exit.getPositionX() < canvas.width/2){
-        exit.setPositionX(exit.getPositionX() + 20)
-    }else {
-        exit.setPositionX(exit.getPositionX() - 20)
-    }
-
-    if (exit.getPositionY() < canvas.height/2){
-        exit.setPositionY(exit.getPositionY() + 20)
-    }else {
-        exit.setPositionY(exit.getPositionY() - 20)
-    }
+    exit = exitSpawn(exit)
     // ramdom number of ennemys
-    nb = hasardEnnemis(5)
-    if (nb == 0){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false ,"runner",1500)
-    } else if (nb == 1 || nb == 2){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false,"runner",1500)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
-    } else if (nb == 3){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,20,false,"runner",1500)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,75,75,35,10,false, "fat",3000)
-    } else if (nb == 4){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,10,false,"runner",1500)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,100,100,35,75,false,"fat",3000)
-        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,20,35,false, "stopper",2000)
-    }
-}
-
-// new start for the score and don't declare the player a second time
-function newStart(){
-    actualScore()
-    player.setPositionX(hasardEnnemis(canvas.width))
-    player.setPositionY(hasardEnnemis(canvas.height))
-    // ramdom parameter of the findobject localisation
-    obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55,10)
-
-    if (obj.getPositionX() < canvas.width/2){
-        obj.setPositionX(obj.getPositionX() + 20)
-    }else {
-        obj.setPositionX(obj.getPositionX() - 20)
-    }
-
-    if (obj.getPositionY() < canvas.height/2){
-        obj.setPositionY(obj.getPositionY() + 20)
-    }else {
-        obj.setPositionY(obj.getPositionY() - 20)
-    }
-
-    // ramdom parameter of the exit localisation
-    exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
-    if (exit.getPositionX() < canvas.width/2){
-        exit.setPositionX(exit.getPositionX() + 20)
-    }else {
-        exit.setPositionX(exit.getPositionX() - 20)
-    }
-
-    if (exit.getPositionY() < canvas.height/2){
-        exit.setPositionY(exit.getPositionY() + 20)
-    }else {
-        exit.setPositionY(exit.getPositionY() - 20)
-    }
-    // ramdom number of ennemys
-    nb = hasardEnnemis(5)
-    if (nb == 0){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false ,"runner",1500)
-    } else if (nb == 1 || nb == 2){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false,"runner",1500)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
-    } else if (nb == 3){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,20,false,"runner",1500)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,75,75,35,10,false, "fat",3000)
-    } else if (nb == 4){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,10,false,"runner",1500)
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,100,100,35,75,false,"fat",3000)
-        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,20,35,false, "stopper",2000)
-    }
+    const spawnedEnemies = ennemySpawn(ennemi1,ennemi2,ennemi3,ennemi4,nb)
+    ennemi1 = spawnedEnemies.ennemi1
+    ennemi2 = spawnedEnemies.ennemi2
+    ennemi3 = spawnedEnemies.ennemi3
+    ennemi4 = spawnedEnemies.ennemi4
+    nb = spawnedEnemies.nb
+    
 }
 
 //map configuaration
 function mapSize(){
     canvas.width = window.innerWidth*8/10
     canvas.height = window.innerHeight*7.5/10;
+}
+
+function onTheMap(theCurrentMap){
+    const theMap = theCurrentMap
+    if (theMap==null) {
+        return
+    }
+
+    const celluleW = canvas.width / 20
+    const celluleH = canvas.height / 10
+
+    for (let x = 0; x < theMap.length; x++){
+        for (let y = 0; y < theMap[x].length; y++){
+            const tile = theMap[x][y]
+            if (tile !== " "){
+                c.fillStyle = "black"
+                c.fillRect(y * celluleW, x * celluleH, celluleW, celluleH)
+            }
+        }
+    }
 }
 
 function hasardEnnemis(max){
@@ -135,6 +73,7 @@ function draw(){
     requestAnimationFrame(draw)
     c.fillStyle = 'grey'
     c.fillRect(0,0, canvas.width, canvas.height)
+    onTheMap(currentMap)
     player.draw()
     ennemiC()
     exit.drawExit()

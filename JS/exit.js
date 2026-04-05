@@ -47,7 +47,7 @@ class Exit{
             player.getPositionY() + 55 > this.getPositionY()
         ) {
             this.setStatusExit(true)
-            newStart()
+            start()
         }
     }
 

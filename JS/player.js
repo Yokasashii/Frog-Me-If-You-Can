@@ -120,7 +120,7 @@ class Player{
         // basic move
 
         if (keys.get('KeyW')){
-            if (this.getPositionY()>0) {
+            if (currentMap[canvasToMatrixX(this.getPositionY() - movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " ") {
                 this.setPositionY(this.getPositionY()-movement)
             }
             this.setNorth(true)
@@ -128,7 +128,7 @@ class Player{
         }
 
         if (keys.get('KeyS')){
-            if (this.getPositionY()+55<canvas.height){
+            if (currentMap[canvasToMatrixX(this.getPositionY()+55 + movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " "){
                 this.setPositionY(this.getPositionY()+movement)
             }
             this.setNorth(false)
@@ -136,7 +136,7 @@ class Player{
         }
 
         if (keys.get('KeyA')){
-            if (this.getPositionX()>0){
+            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX() - movement, canvas)] == " "){
                 this.setPositionX(this.getPositionX()-movement)
             }
             this.setWest(true)
@@ -144,35 +144,35 @@ class Player{
         }
 
         if (keys.get('KeyD')){
-            if (this.getPositionX()+55<canvas.width){
+            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+55 + movement, canvas)] == " "){
                 this.setPositionX(this.getPositionX()+movement)
             }
             this.setWest(false)
             this.setEst(true)
         }
         if (keys.get('KeyW') && keys.get("ShiftLeft") && this.getMp()>0){
-            if (this.getPositionY()>0) {
+            if (currentMap[canvasToMatrixX(this.getPositionY() - movement - 10, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " ") {
                 this.setPositionY(this.getPositionY()-movement-10)
                 this.setMp(this.getMp()-1)
             }
         }
 
         if (keys.get('KeyS') && keys.get("ShiftLeft") && this.getMp()>0){
-            if (this.getPositionY()+55<canvas.height){
+            if (currentMap[canvasToMatrixX(this.getPositionY()+55 + movement + 10, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " "){
                 this.setPositionY(this.getPositionY()+movement+10)
                 this.setMp(this.getMp()-1)
             }
         }
 
         if (keys.get('KeyA') && keys.get("ShiftLeft") && this.getMp()>0){
-            if (this.getPositionX()>0){
+            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX() - movement - 10, canvas)] == " "){
                 this.setPositionX(this.getPositionX()-movement-10)
                 this.setMp(this.getMp()-1)
             }
         }
 
         if (keys.get('KeyD') && keys.get("ShiftLeft") && this.getMp()>0){
-            if (this.getPositionX()+55<canvas.width){
+            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+55 + movement + 10, canvas)] == " "){
                 this.setPositionX(this.getPositionX()+movement+10)
                 this.setMp(this.getMp()-1)
             }
