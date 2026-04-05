@@ -1,12 +1,11 @@
 const canvas = document.getElementById("canvas")
 const c = canvas.getContext('2d')
 
-let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4, nb;
+let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb;
 
 
-// start parameter of a stage
+//first start parameter of a stage
 function start(){
-
 
     if (player == null){
         player = new Player("louis",{x : hasardEnnemis(canvas.width), y : hasardEnnemis(canvas.height)}, 5,"../img/player.png")
@@ -45,19 +44,71 @@ function start(){
     // ramdom number of ennemys
     nb = hasardEnnemis(5)
     if (nb == 0){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false ,"runner")
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false ,"runner",1500)
     } else if (nb == 1 || nb == 2){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false,"runner")
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35, "normal")
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false,"runner",1500)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
     } else if (nb == 3){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,20,false,"runner")
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal")
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,75,75,35,10,false, "fat")
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,20,false,"runner",1500)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,75,75,35,10,false, "fat",3000)
     } else if (nb == 4){
-        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,10,false,"runner")
-        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal")
-        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,100,100,35,75,false,"fat")
-        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,20,35,false, "stopper")
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,10,false,"runner",1500)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,100,100,35,75,false,"fat",3000)
+        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,20,35,false, "stopper",2000)
+    }
+}
+
+// new start for the score and don't declare the player a second time
+function newStart(){
+    actualScore()
+    player.setPositionX(hasardEnnemis(canvas.width))
+    player.setPositionY(hasardEnnemis(canvas.height))
+    // ramdom parameter of the findobject localisation
+    obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55,10)
+
+    if (obj.getPositionX() < canvas.width/2){
+        obj.setPositionX(obj.getPositionX() + 20)
+    }else {
+        obj.setPositionX(obj.getPositionX() - 20)
+    }
+
+    if (obj.getPositionY() < canvas.height/2){
+        obj.setPositionY(obj.getPositionY() + 20)
+    }else {
+        obj.setPositionY(obj.getPositionY() - 20)
+    }
+
+    // ramdom parameter of the exit localisation
+    exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
+    if (exit.getPositionX() < canvas.width/2){
+        exit.setPositionX(exit.getPositionX() + 20)
+    }else {
+        exit.setPositionX(exit.getPositionX() - 20)
+    }
+
+    if (exit.getPositionY() < canvas.height/2){
+        exit.setPositionY(exit.getPositionY() + 20)
+    }else {
+        exit.setPositionY(exit.getPositionY() - 20)
+    }
+    // ramdom number of ennemys
+    nb = hasardEnnemis(5)
+    if (nb == 0){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false ,"runner",1500)
+    } else if (nb == 1 || nb == 2){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,10,20,false,"runner",1500)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
+    } else if (nb == 3){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,20,false,"runner",1500)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,75,75,35,10,false, "fat",3000)
+    } else if (nb == 4){
+        ennemi1 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 1.5,55,55,15,10,false,"runner",1500)
+        ennemi2 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.8,55,55,20,35,false, "normal",1500)
+        ennemi3 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.4,100,100,35,75,false,"fat",3000)
+        ennemi4 = new Ennemis(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), 0.6,55,55,20,35,false, "stopper",2000)
     }
 }
 

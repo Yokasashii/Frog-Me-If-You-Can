@@ -34,7 +34,7 @@ function drawbutton(TheButton){
 }
 
 // all type of button
-const button = {
+const action1 = {
     x: 25,
     y: 60,
     width: 250,
@@ -42,7 +42,7 @@ const button = {
     message: "espace attaque"
 }
 
-const button1 = {
+const action2 = {
     x: 285,
     y: 60,
     width: 250,
@@ -50,7 +50,7 @@ const button1 = {
     message: "1 Chocolat"
 }
 
-const button2 = {
+const action3 = {
     x: 545,
     y: 60,
     width: 250,
@@ -58,7 +58,7 @@ const button2 = {
     message: "2 café"
 }
 
-const button3 = {
+const action4 = {
     x: 805,
     y: 60,
     width: 250,
@@ -66,7 +66,7 @@ const button3 = {
     message: "3 Amélioraton"
 }
 
-const button4 = {
+const action5 = {
     x: 1065,
     y: 60,
     width: 250,
@@ -76,13 +76,8 @@ const button4 = {
 
 // draw all button
 
-drawbutton(button)
-drawbutton(button1)
-drawbutton(button2)
-drawbutton(button3)
-drawbutton(button4)
-
-document.addEventListener('click', (event) => {
-    const x = event.offsetX;
-    const y = event.offsetY;
-});
+drawbutton(action1)
+drawbutton(action2)
+drawbutton(action3)
+drawbutton(action4)
+drawbutton(action5)

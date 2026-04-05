@@ -16,7 +16,7 @@ class Player{
         this.velocity = velocity
         this.img = img
         this.stat = {
-            hp: 1000000, maxHp: 100, mp : 50, el : 0, mpMax : 50, elMax : 5,
+            hp: 100, maxHp: 100, mp : 50, el : 0, mpMax : 50, elMax : 5,
             attack: 15,
             level: 1,}
         this.inventory = {
@@ -25,7 +25,7 @@ class Player{
             "vitamine": 0,
             "chocolatMax" : 10,
             "caféMax" : 10,
-            "vitamineMAx": 10
+            "vitamineMax": 10
         }
         this.equipment = {
             weapon: null, 
@@ -63,7 +63,7 @@ class Player{
     getInventoryVitamine(){return this.inventory.vitamine}
     getInventoryCafeMax(){return this.inventory.caféMax}
     getInventoryChocolatMax(){return this.inventory.chocolatMax}
-    getInventoryVitamineMax(){return this.inventory.vitamineMAx}
+    getInventoryVitamineMax(){return this.inventory.vitamineMax}
     getEquipement(){return this.equipment}
     getGold(){return this.gold}
     getScore(){return this.score}
@@ -95,7 +95,7 @@ class Player{
     setInventoryVitamine(elt){this.inventory.vitamine = elt}
     setInventoryCafeMax(elt){this.inventory.caféMax = elt}
     setInventoryChocolatMax(elt){this.inventory.chocolatMax = elt}
-    setInventoryVitamineMax(elt){this.inventory.vitamineMAx = elt}
+    setInventoryVitamineMax(elt){this.inventory.vitamineMax = elt}
     setEquipement(elt){this.equipment = elt}
     setGold(elt){this.gold = elt}
     setScore(elt){this.score = elt}
@@ -205,7 +205,7 @@ class Player{
         }
 
         if (keys.get('Digit3')){
-            if (this.getInventoryVitamine() > 0){
+            if (this.getInventoryVitamine() >= this.getInventoryVitamineMax()){
                 this.setMaxLife(this.getMaxLife()+10)
                 this.setLife(this.getMaxLife())
                 this.setMaxMp(this.getMaxMp()+10)
@@ -262,6 +262,9 @@ class Player{
 
     die(){
         if (this.getLife() <= 0){
+            this.setVelocity(0)
+            this.setLife(0)
+            this.setImg("img/die.png")
             window.location.href = "die.html";
         }
     }

@@ -47,9 +47,7 @@ class Exit{
             player.getPositionY() + 55 > this.getPositionY()
         ) {
             this.setStatusExit(true)
-            console.log("reset")
-            actualScore()
-            start()
+            newStart()
         }
     }
 

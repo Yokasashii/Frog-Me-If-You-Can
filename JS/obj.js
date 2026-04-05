@@ -39,7 +39,7 @@ class Obj{
             player.getPositionY() < this.getPositionY() + this.height &&
             player.getPositionY() + 55 > this.getPositionY()
         ) {
-            if (player.getInventoryCafe()<10 || player.getInventoryChocolat()<10 || player.getInventoryVitamine()<10){
+            if (player.getInventoryCafe()<player.getInventoryCafeMax() || player.getInventoryChocolat()< player.getInventoryChocolatMax() || player.getInventoryVitamine()< player.getInventoryVitamineMax()){
                 this.height = 0
                 this.width = 0
                 c.drawImage(ObjImg, this.getPositionX(), this.getPositionY(), this.width, this.height)
@@ -47,29 +47,17 @@ class Obj{
                 if (this.listeObj[nb] == "café"){
                     if (player.getInventoryCafe() < player.getInventoryCafeMax()){ 
                         player.setInventoryCafe(player.getInventoryCafe()+1)
-                        this.setverif(1)
-                        console.log("cafe",player.getInventoryCafe())
-                    } else {
-                        console.log(" vous avez déjà la quantité max")
-                    }
+                    } 
                     
                 } else if (this.listeObj[nb] == "chocolat"){
                     if (player.getInventoryChocolat() < player.getInventoryChocolatMax()){
                         player.setInventoryChocolat(player.getInventoryChocolat()+1)
-                        this.setverif(1)
-                        console.log("chocolat",player.getInventoryChocolat())
-                    } else {
-                        console.log(" vous avez déjà la quantité max")
                     }
                     
                 } else if (this.listeObj[nb] == "vitamine"){
                     if (player.getInventoryVitamine() < player.getInventoryVitamineMax()){
                         player.setInventoryVitamine(player.getInventoryVitamine() + 1)
-                        this.setverif(1)
-                        console.log("vitamine",player.getInventoryVitamine())
-                    } else {
-                        console.log(" vous avez déjà la quantité max")
-                    }
+                    } 
                 }
             }
         }

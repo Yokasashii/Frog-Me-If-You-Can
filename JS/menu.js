@@ -49,14 +49,26 @@ canvasMenu.addEventListener("click", (e) => {
   }
 
   if (isClicking(boutonRank, x, y)) {
-    console.log("Rank");
+    window.location.href = "HTML/rank.html";
   }
 
   if (isClicking(boutonQuit, x, y)) {
-    console.log("Quit");
+    window.location.href = "about:blank";
   }
   
 });
+
+function drawTheTitle(){
+
+  cMenu.fillRect(0,0, canvasMenu.width, canvasMenu.height)
+
+  cMenu.font = "100px Arial";
+
+  cMenu.fillStyle = "white";
+
+  cMenu.fillText(" Frog me if you can !", canvasMenu.width*3/10, canvasMenu.height*0.5/3 );
+
+}
 
 
 //button configuration
@@ -89,6 +101,8 @@ const boutonQuit = {
   message: "Quit",
 };
 
+
+drawTheTitle()
 drawbutton(boutonPlay);
 drawbutton(boutonRank);
 drawbutton(boutonQuit);

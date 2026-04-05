@@ -1,11 +1,9 @@
 const ennemisImg = new Image();
-let enemyLastUsed = 0;
-const enemyCooldown = 1500; 
 
 
 class Ennemis{
 
-    constructor( x, y, velocity, width, height, attack, hp, statusLife, special){
+    constructor( x, y, velocity, width, height, attack, hp, statusLife, special,enemyCooldown){
         this.name = 'zombie collègue';
         this.img = "../img/ennmis.png"
         this.x = x;
@@ -17,6 +15,8 @@ class Ennemis{
         this.attack = attack
         this.statusLife = statusLife
         this.special = special
+        this.enemyCooldown= enemyCooldown
+        this.enemyLastUsed = 0;
     }
 
     // getter
@@ -32,6 +32,8 @@ class Ennemis{
     getAttack(){return this.attack}
     getStatusLife(){return this.statusLife}
     getSpecial(){return this.special}
+    getCooldown(){return this.enemyCooldown}
+    getenemyLastUsed(){return this.enemyLastUsed}
 
     // setter
 
@@ -46,6 +48,7 @@ class Ennemis{
     setAttack(elt){this.attack = elt}
     setStatusLife(elt){this.statusLife = elt}
     setSpecial(elt){this.special = elt}
+    setenemyLastUsed(elt){this.enemyLastUsed = elt}
 
     move(){
 
@@ -88,12 +91,9 @@ class Ennemis{
 
             let now = Date.now()
 
-            if (now - enemyLastUsed < enemyCooldown) {
-                console.log("Encore en cooldown !");
-            } else {
+            if (now - this.getenemyLastUsed() > this.getCooldown()) {
                 player.setLife(player.getLife()-this.getAttack())
-                    
-                enemyLastUsed = now
+                this.setenemyLastUsed(now)
             }
             
         }
