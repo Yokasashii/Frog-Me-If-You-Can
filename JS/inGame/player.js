@@ -224,6 +224,7 @@ class Player{
                 this.setMaxMp(this.getMaxMp()+10)
                 this.setMp(this.getMaxMp())
                 this.setMaxEl(this.getMaxEl()+1)
+                this.setEl(this.getEl()+1)
                 this.setAttack(this.getAttack()+2)
                 this.setDefense(this.getDefense()+2)
                 this.setLevel(this.getLevel()+1)
@@ -277,20 +278,26 @@ class Player{
     //check if the player is dead or not
     die(){
         if (this.getLife() <= 0){
-            if (this.hasHandledDeath) {
+            if (this.getEl()>0){
+                this.setLife(this.getMaxLife())
+                this.setEl(this.getEl()-1)
+            } else {
+                if (this.hasHandledDeath) {
                 return
-            }
-            this.hasHandledDeath = true
-            this.setVelocity(0)
-            this.setLife(0)
-            this.setImg("../Assets/Sprite - RIP.png")
-            if (typeof saveScoreToRank === "function") {
-                saveScoreToRank(this.getScore())
-            }
-            if (typeof resetCurrentGameToDefault === "function") {
+                }
+                this.hasHandledDeath = true
+                this.setVelocity(0)
+                this.setLife(0)
+                this.setImg("../Assets/Sprite - RIP.png")
+                if (typeof saveScoreToRank === "function") {
+                    saveScoreToRank(this.getScore())
+                }
+
+                if (typeof resetCurrentGameToDefault === "function") {
                 resetCurrentGameToDefault()
+                }
+                window.location.href = "die.html";
             }
-            window.location.href = "die.html";
         }
     }
 

@@ -47,6 +47,9 @@ class Exit{
             player.getPositionY() + 55 > this.getPositionY()
         ) {
             this.setStatusExit(true)
+            if (Date.now() - roomStartTime < 5000) {
+                player.setEl(Math.min(player.getEl() + 1, player.getMaxEl()))
+            }
             saveCurrentGame()
             start()
         }

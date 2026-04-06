@@ -32,6 +32,7 @@ wallDoubleImg.src = "../Assets/Environement/Sprite - MurMid-Double.png"
 let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb,currentMap;
 let currentMapIndex = 0;
 let theEnd=0
+let roomStartTime = Date.now()
 
 const activeSlot = localStorage.getItem("frog.activeSlot") || "1";
 const saveKey = `frog.slot.${activeSlot}`;
@@ -47,6 +48,8 @@ function createDefaultSave() {
             maxHp: 100,
             mp: 50,
             mpMax: 50,
+            el: 0,
+            elMax: 10,
             defense: 15,
             level: 1,
             score: 0
@@ -78,6 +81,8 @@ function saveCurrentGame(){
             maxHp: player.getMaxLife(),
             mp: player.getMp(),
             mpMax: player.getMaxMp(),
+            el: player.getEl(),
+            elMax: player.getMaxEl(),
             defense: player.getDefense(),
             level: player.getLevel(),
             score: player.getScore()
@@ -158,6 +163,8 @@ function start(){
         player.setMaxLife(loadedSaveData.player.maxHp)
         player.setMp(loadedSaveData.player.mp)
         player.setMaxMp(loadedSaveData.player.mpMax)
+        player.setEl(loadedSaveData.player.el ?? player.getEl())
+        player.setMaxEl(loadedSaveData.player.elMax ?? player.getMaxEl())
         player.setDefense(loadedSaveData.player.defense ?? player.getDefense())
         player.setLevel(loadedSaveData.player.level)
         player.setScore(loadedSaveData.player.score)
@@ -175,6 +182,7 @@ function start(){
     ennemi3 = spawnedEnemies.ennemi3
     ennemi4 = spawnedEnemies.ennemi4
     nb = spawnedEnemies.nb
+    roomStartTime = Date.now()
     
 }
 
@@ -347,6 +355,10 @@ function actualScore(){
     if(exit.getStatusExit()){
         player.setScore(player.getScore()+100)
         exit.setStatusExit(false)
+    }
+
+    if (Date.now() - roomStartTime < 5000) {
+        player.setScore(player.getScore()+1000)
     }
 }
 
