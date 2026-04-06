@@ -63,11 +63,17 @@ function ennemySpawn(ennemi1,ennemi2,ennemi3,ennemi4,nb){
 function ennemySpawnDetails(ennemy, velocity, width, height, attack, hp, statusLife, special, enemyCooldown){
     let x = 0    
     let y = 0
-    while (currentMap[canvasToMatrixX(y, canvas)][canvasToMatrixY(x, canvas)] != " "){
-        x =hasardEnnemis(canvas.width)
-        y =hasardEnnemis(canvas.height)
-            
+    if (special == "stopper"){
+        x = exit.getPositionX()
+        y = exit.getPositionY()
+    } else {
+        while (currentMap[canvasToMatrixX(y, canvas)][canvasToMatrixY(x, canvas)] != " "){
+            x =hasardEnnemis(canvas.width)
+            y =hasardEnnemis(canvas.height)
+                
+        }
     }
+    
     ennemy = new Ennemis(x,y,velocity,width,height,attack,hp,statusLife,special,enemyCooldown)
     return ennemy
 }

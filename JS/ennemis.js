@@ -57,26 +57,51 @@ class Ennemis{
         ennemisImg.src = this.getImg()
 
         if (player.getPositionY()< this.getPositionY()){
-            if (currentMap[canvasToMatrixX(this.getPositionY() - movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " ") {
-                this.setPositionY(this.getPositionY()-movement)
+            if (this.getSpecial()=="stopper"){
+                if (currentMap[canvasToMatrixX(this.getPositionY() - movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " " && this.getPositionY() >= exit.getPositionY()-200)  {
+                    this.setPositionY(this.getPositionY()-movement)
+                }
+            } else {
+                if (currentMap[canvasToMatrixX(this.getPositionY() - movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " ") {
+                    this.setPositionY(this.getPositionY()-movement)
+                }
             }
+            
         }
 
         if (player.getPositionY()> this.getPositionY()){
-            if (currentMap[canvasToMatrixX(this.getPositionY()+ 55 + movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " "){
-                this.setPositionY(this.getPositionY()+movement)
+            if (this.getSpecial()=="stopper"){
+                if (currentMap[canvasToMatrixX(this.getPositionY()+ 55 + movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " " && this.getPositionY() <= exit.getPositionY()+200){
+                    this.setPositionY(this.getPositionY()+movement)
+                }
+            } else {
+                if (currentMap[canvasToMatrixX(this.getPositionY()+ 55 + movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " "){
+                    this.setPositionY(this.getPositionY()+movement)
+                }
             }
         }
 
         if (player.getPositionX()< this.getPositionX()){
-            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()- movement, canvas)] == " "){
-                this.setPositionX(this.getPositionX()-movement)
+            if (this.getSpecial()=="stopper"){
+                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()- movement, canvas)] == " " && this.getPositionX() >= exit.getPositionX()-200){
+                    this.setPositionX(this.getPositionX()-movement)
+                }
+            } else {
+                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()- movement, canvas)] == " "){
+                    this.setPositionX(this.getPositionX()-movement)
+                }
             }
         }
 
         if (player.getPositionX()> this.getPositionX()){
-            if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+ 55 + movement, canvas)] == " "){
-                this.setPositionX(this.getPositionX()+movement)
+            if (this.getSpecial()=="stopper"){
+                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+ 55 + movement, canvas)] == " " && this.getPositionX() <= exit.getPositionX()+200){
+                    this.setPositionX(this.getPositionX()+movement)
+                }
+            } else {
+                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+ 55 + movement, canvas)] == " "){
+                    this.setPositionX(this.getPositionX()+movement)
+                }
             }
         }
     }

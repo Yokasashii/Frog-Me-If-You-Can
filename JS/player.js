@@ -209,7 +209,8 @@ class Player{
         }
 
         if (keys.get('Digit3')){
-            if (this.getInventoryVitamine() >= this.getInventoryVitamineMax()){
+            if (this.getLevel()<10){
+                if (this.getInventoryVitamine() >= this.getInventoryVitamineMax()){
                 this.setMaxLife(this.getMaxLife()+10)
                 this.setLife(this.getMaxLife())
                 this.setMaxMp(this.getMaxMp()+10)
@@ -220,7 +221,9 @@ class Player{
                 this.setInventoryCafeMax(this.getInventoryCafeMax()+1)
                 this.setInventoryChocolatMax(this.getInventoryChocolatMax()+1)
                 this.setInventoryVitamine(this.getInventoryVitamine()-10)
+                }
             }
+            
         }
 
         if (keys.get('Digit4')){
@@ -292,19 +295,23 @@ class Player{
                 console.log("Encore en cooldown !");
             } else {
                 enemy.setLife(enemy.getLife() - this.getAttack())
-                if (this.getNorth()){
+                if (this.getNorth() && enemy.getPositionY() -100 >0){
                     enemy.setPositionY(enemy.getPositionY()-100)
-                }
-
-                if (this.getSouth()){
+                } else {
                     enemy.setPositionY(enemy.getPositionY()+100)
                 }
 
-                if (this.getEst()){
+                if (this.getSouth() && enemy.getPositionY() +100 <canvas.height){
+                    enemy.setPositionY(enemy.getPositionY()+100)
+                } else {
+                    enemy.setPositionY(enemy.getPositionY()-100)
+                }
+
+                if (this.getEst() && enemy.getPositionY() +100 <canvas.width){
                     enemy.setPositionX(enemy.getPositionX()+100)
                 }
 
-                if (this.getWest()){
+                if (this.getWest() && enemy.getPositionY() - 100 <0){
                     enemy.setPositionX(enemy.getPositionX()-100)
                 }
                 lastUsed = now
