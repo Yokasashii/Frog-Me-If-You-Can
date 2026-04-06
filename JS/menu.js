@@ -2,60 +2,22 @@
 const canvasMenu = document.getElementById("canvasMenu");
 const cMenu = canvasMenu.getContext("2d");
 
-// size configuration of menu canva 
-function menuSize() {
-  canvasMenu.width = window.innerWidth - 20;
-  canvasMenu.height = window.innerHeight - 20;
-}
-
-function drawMenu() {
-  menuSize();
-
-  cMenu.fillStyle = "rgba(0, 0, 0, 0.8)";
-  cMenu.fillRect(0, 0, canvasMenu.width, canvasMenu.height);
-}
-
-drawMenu();
-
-//draw the several buttons
-function drawbutton(bouton) {
-  cMenu.fillStyle = "grey";
-  cMenu.fillRect(bouton.x, bouton.y, bouton.width, bouton.height);
-
-  cMenu.fillStyle = "white";
-  cMenu.font = "20px Arial";
-  cMenu.textAlign = "center";
-  cMenu.textBaseline = "middle";
-  cMenu.fillText(
-    bouton.message,
-    bouton.x + bouton.width / 2,
-    bouton.y + bouton.height / 2,
-  );
-}
-
-function isClicking(bouton, x, y) {
-  return (
-    x >= bouton.x &&
-    x <= bouton.x + bouton.width &&
-    y >= bouton.y &&
-    y <= bouton.y + bouton.height
-  );
-}
+universalDrawInterface(canvasMenu, cMenu)
 
 //clik for the button
 canvasMenu.addEventListener("click", (e) => {
   const x = e.clientX;
   const y = e.clientY;
 
-  if (isClicking(boutonPlay, x, y)) {
+  if (universalClicking(boutonPlay, x, y)) {
     window.location.href = "HTML/save.html";
   }
 
-  if (isClicking(boutonRank, x, y)) {
+  if (universalClicking(boutonRank, x, y)) {
     window.location.href = "HTML/rank.html";
   }
 
-  if (isClicking(boutonQuit, x, y)) {
+  if (universalClicking(boutonQuit, x, y)) {
     window.location.href = "about:blank";
   }
   
@@ -110,6 +72,6 @@ const boutonQuit = {
 
 //executution of all menu function
 drawTheTitle()
-drawbutton(boutonPlay);
-drawbutton(boutonRank);
-drawbutton(boutonQuit);
+universalDrawButton(cMenu, boutonPlay);
+universalDrawButton(cMenu, boutonRank);
+universalDrawButton(cMenu, boutonQuit);

@@ -1,60 +1,23 @@
 const canvasSaveMenu = document.getElementById("canvasSaveMenu");
 const cSaveMenu = canvasSaveMenu.getContext("2d");
 
-// menu size configuration
-function menuSize() {
-  canvasSaveMenu.width = window.innerWidth - 20;
-  canvasSaveMenu.height = window.innerHeight - 20;
-}
-
-function drawMenu() {
-  menuSize();
-
-  cSaveMenu.fillStyle = "rgba(0, 0, 0, 0.8)";
-  cSaveMenu.fillRect(0, 0, canvasSaveMenu.width, canvasSaveMenu.height);
-}
-
-drawMenu();
-
-function drawbutton(bouton) {
-  cSaveMenu.fillStyle = "grey";
-  cSaveMenu.fillRect(bouton.x, bouton.y, bouton.width, bouton.height);
-
-  cSaveMenu.fillStyle = "white";
-  cSaveMenu.font = "20px Arial";
-  cSaveMenu.textAlign = "center";
-  cSaveMenu.textBaseline = "middle";
-  cSaveMenu.fillText(
-    bouton.message,
-    bouton.x + bouton.width / 2,
-    bouton.y + bouton.height / 2,
-  );
-}
-
-function isClicking(bouton, x, y) {
-  return (
-    x >= bouton.x &&
-    x <= bouton.x + bouton.width &&
-    y >= bouton.y &&
-    y <= bouton.y + bouton.height
-  );
-}
+universalDrawInterface(canvasSaveMenu, cSaveMenu)
 
 canvasSaveMenu.addEventListener("click", (e) => {
   const x = e.clientX;
   const y = e.clientY;
 
-  if (isClicking(boutonSave1, x, y)) {
+  if (universalClicking(boutonSave1, x, y)) {
     localStorage.setItem("frog.activeSlot", "1")
     window.location.href = "game.html";
   }
 
-  if (isClicking(boutonSave2, x, y)) {
+  if (universalClicking(boutonSave2, x, y)) {
     localStorage.setItem("frog.activeSlot", "2")
     window.location.href = "game.html";
   }
 
-  if (isClicking(boutonSave3, x, y)) {
+  if (universalClicking(boutonSave3, x, y)) {
     localStorage.setItem("frog.activeSlot", "3")
     window.location.href = "game.html";
   }
@@ -106,6 +69,6 @@ const boutonSave3 = {
 
 
 drawTheTitle()
-drawbutton(boutonSave1);
-drawbutton(boutonSave2);
-drawbutton(boutonSave3);
+universalDrawButton(cSaveMenu, boutonSave1);
+universalDrawButton(cSaveMenu, boutonSave2);
+universalDrawButton(cSaveMenu, boutonSave3);

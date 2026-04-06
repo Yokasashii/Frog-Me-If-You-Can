@@ -3,8 +3,8 @@ function playerSpawn(player){
     let theX = 0
     let theY = 0
     while (currentMap[canvasToMatrixX(theY, canvas)][canvasToMatrixY(theX, canvas)] != " "){
-        theX = hasardEnnemis(canvas.width)
-        theY = hasardEnnemis(canvas.height)
+        theX = universalRandom(canvas.width)
+        theY = universalRandom(canvas.height)
     }
     
     if (player == null){
@@ -20,28 +20,28 @@ function playerSpawn(player){
 // object spawn in free aera
 function ObjSpawn(obj){
     if (obj == null || obj.width === 0 || obj.height === 0) {
-        obj = new Obj(hasardEnnemis(canvas.width), hasardEnnemis(canvas.height), 55, 55)
+        obj = new Obj(universalRandom(canvas.width), universalRandom(canvas.height), 55, 55)
     }
 
     while (currentMap[canvasToMatrixX(obj.getPositionY(), canvas)][canvasToMatrixY(obj.getPositionX(), canvas)] != " "){
-        obj = new Obj(hasardEnnemis(canvas.width), hasardEnnemis(canvas.height), 55, 55)
+        obj = new Obj(universalRandom(canvas.width), universalRandom(canvas.height), 55, 55)
     }
     return obj
 }
 
 // exit spawn in free aera
 function exitSpawn(exit){
-    exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
+    exit = new Exit(universalRandom(canvas.width),universalRandom(canvas.height), false)
 
     while (currentMap[canvasToMatrixX(exit.getPositionY(), canvas)][canvasToMatrixY(exit.getPositionX(), canvas)] != " "){
-        exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
+        exit = new Exit(universalRandom(canvas.width),universalRandom(canvas.height), false)
     }
     return exit
 }
 
 // general spawn of the ennemy
 function ennemySpawn(ennemi1,ennemi2,ennemi3,ennemi4,nb){
-    nb = hasardEnnemis(5)
+    nb = universalRandom(5)
     if (nb == 0){
         ennemi1 = ennemySpawnDetails(ennemi1, 1.5,55,55,10,20,false,"runner",1500)
 
@@ -73,8 +73,8 @@ function ennemySpawnDetails(ennemy, velocity, width, height, attack, hp, statusL
         y = exit.getPositionY()
     } else {
         while (currentMap[canvasToMatrixX(y, canvas)][canvasToMatrixY(x, canvas)] != " "){
-            x =hasardEnnemis(canvas.width)
-            y =hasardEnnemis(canvas.height)
+            x =universalRandom(canvas.width)
+            y =universalRandom(canvas.height)
                 
         }
     }

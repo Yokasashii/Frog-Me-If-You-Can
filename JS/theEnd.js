@@ -1,20 +1,7 @@
 const canvasEnd = document.getElementById("canvasEnd");
 const cEnd = canvasEnd.getContext("2d");
 
-// menu size configuration
-function endSize() {
-  canvasEnd.width = window.innerWidth - 20;
-  canvasEnd.height = window.innerHeight - 20;
-}
-
-function drawEnd() {
-  endSize();
-
-  cEnd.fillStyle = "rgba(0, 0, 0, 0.8)";
-  cEnd.fillRect(0, 0, canvasEnd.width, canvasEnd.height);
-}
-
-drawEnd();
+universalDrawInterface(canvasEnd, cEnd)
 
 function getSavedScore() {
   const activeSlot = localStorage.getItem("frog.activeSlot") || "1"
@@ -54,22 +41,13 @@ function resetCurrentGameToDefault() {
   localStorage.setItem(saveKey, JSON.stringify(defaultSave))
 }
 
-function isClicking(bouton, x, y) {
-  return (
-    x >= bouton.x &&
-    x <= bouton.x + bouton.width &&
-    y >= bouton.y &&
-    y <= bouton.y + bouton.height
-  );
-}
-
 //clik for the button
 
 canvasEnd.addEventListener("click", (e) => {
   const x = e.clientX;
   const y = e.clientY;
 
-  if (isClicking(boutonGoMenu, x, y)) {
+  if (universalClicking(boutonGoMenu, x, y)) {
     resetCurrentGameToDefault()
     window.location.href = "../index.html";
   }
@@ -107,20 +85,5 @@ const boutonGoMenu = {
   message: "Return to menu",
 };
 
-function drawbutton(bouton) {
-  cEnd.fillStyle = 'grey';
-  cEnd.fillRect(bouton.x, bouton.y, bouton.width, bouton.height);
-
-  cEnd.fillStyle = "white";
-  cEnd.font = "20px Arial";
-  cEnd.textAlign = "center";
-  cEnd.textBaseline = "middle";
-  cEnd.fillText(
-    bouton.message,
-    bouton.x + bouton.width / 2,
-    bouton.y + bouton.height / 2,
-  );
-}
-
 drawTheTitleEnd()
-drawbutton(boutonGoMenu);
+universalDrawButton(cEnd, boutonGoMenu);

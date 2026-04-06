@@ -107,7 +107,7 @@ function start(){
     if (loadedSaveData && loadedSaveData.world && loadedSaveData.world.currentMapIndex >= 0) {
         currentMapIndex = loadedSaveData.world.currentMapIndex
     } else {
-        currentMapIndex = hasardEnnemis(Matricelist.length)
+        currentMapIndex = universalRandom(Matricelist.length)
     }
     currentMap = Matricelist[currentMapIndex]
     onTheMap(currentMap)
@@ -212,11 +212,6 @@ function onTheMap(theCurrentMap){
         }
     }
 }
-
-//define the number of ennemys
-function hasardEnnemis(max){
-        return Math.floor(Math.random() * max);
-    }
 
 
 

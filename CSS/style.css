@@ -9,7 +9,6 @@ body {
 canvas {
     align-content: center;
     background-color: rgb(111, 109, 109);
-    border: 2px solid white;
     color: rgb(255, 255, 255);
 } 
 

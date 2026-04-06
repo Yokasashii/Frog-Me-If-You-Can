@@ -1,59 +1,22 @@
 const canvasDie = document.getElementById("canvasMenu");
 const cDie = canvasDie.getContext("2d");
 
-// menu size configuration
-function menuSize() {
-  canvasDie.width = window.innerWidth - 20;
-  canvasDie.height = window.innerHeight - 20;
-}
-
-function drawMenu() {
-  menuSize();
-
-  cDie.fillStyle = "rgba(0, 0, 0, 0.8)";
-  cDie.fillRect(0, 0, canvasDie.width, canvasDie.height);
-}
-
-drawMenu();
-
-function drawbutton(bouton) {
-  cDie.fillStyle = 'grey';
-  cDie.fillRect(bouton.x, bouton.y, bouton.width, bouton.height);
-
-  cDie.fillStyle = "white";
-  cDie.font = "20px Arial";
-  cDie.textAlign = "center";
-  cDie.textBaseline = "middle";
-  cDie.fillText(
-    bouton.message,
-    bouton.x + bouton.width / 2,
-    bouton.y + bouton.height / 2,
-  );
-}
-
-function isClicking(bouton, x, y) {
-  return (
-    x >= bouton.x &&
-    x <= bouton.x + bouton.width &&
-    y >= bouton.y &&
-    y <= bouton.y + bouton.height
-  );
-}
+universalDrawInterface(canvasDie, cDie)
 
 canvasDie.addEventListener("click", (e) => {
   const x = e.clientX;
   const y = e.clientY;
 
-  if (isClicking(boutonPlay, x, y)) {
+  if (universalClicking(boutonPlay, x, y)) {
     window.location.href = "game.html";
   }
 
-  if (isClicking(boutonRank, x, y)) {
+  if (universalClicking(boutonRank, x, y)) {
     window.location.href = "rank.html";
   }
 
-  if (isClicking(boutonQuit, x, y)) {
-    window.location.href = "index.html";
+  if (universalClicking(boutonQuit, x, y)) {
+    window.location.href = "../index.html";
   }
   
 });
@@ -105,6 +68,6 @@ const boutonQuit = {
 
 
 drawTheTitle()
-drawbutton(boutonPlay);
-drawbutton(boutonRank);
-drawbutton(boutonQuit);
+universalDrawButton(cDie, boutonPlay);
+universalDrawButton(cDie, boutonRank);
+universalDrawButton(cDie, boutonQuit);
