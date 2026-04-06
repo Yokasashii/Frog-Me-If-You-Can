@@ -30,12 +30,65 @@ wallDoubleImg.src = "../Assets/Environement/Sprite - MurMid-Double.png"
 let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb,currentMap;
 let currentMapIndex = 0;
 
+const activeSlot = localStorage.getItem("frog.activeSlot") || "1";
+const saveKey = `frog.slot.${activeSlot}`;
+let rawSave = localStorage.getItem(saveKey);
+let loadedSaveData = null;
 
+if (rawSave == null) {
+    const defaultSave = {
+        version: 1,
+        updatedAt: Date.now(),
+        player: {
+            hp: 100,
+            maxHp: 100,
+            mp: 50,
+            mpMax: 50,
+            level: 1,
+            score: 0
+        },
+        world: {
+            currentMapIndex: 0
+        }
+    }
+    localStorage.setItem(saveKey, JSON.stringify(defaultSave))
+    loadedSaveData = defaultSave
+    console.log("save creee", saveKey)
+} else {
+    loadedSaveData = JSON.parse(rawSave)
+    console.log("save deja existante", saveKey)
+}
+
+function saveCurrentGame(){
+    if (!player) return
+    
+    const saveData = {
+        version: 1,
+        updatedAt: Date.now(),
+        player: {
+            hp: player.getLife(),
+            maxHp: player.getMaxLife(),
+            mp: player.getMp(),
+            mpMax: player.getMaxMp(),
+            level: player.getLevel(),
+            score: player.getScore()
+        },
+        world: {
+            currentMapIndex: currentMapIndex
+        }
+    }
+    localStorage.setItem(saveKey, JSON.stringify(saveData))
+    console.log("save mise a jour", saveKey)
+}
 
 //first start parameter of a stage
 function start(){
 
-    currentMapIndex = hasardEnnemis(Matricelist.length)
+    if (loadedSaveData && loadedSaveData.world && loadedSaveData.world.currentMapIndex >= 0) {
+        currentMapIndex = loadedSaveData.world.currentMapIndex
+    } else {
+        currentMapIndex = hasardEnnemis(Matricelist.length)
+    }
     currentMap = Matricelist[currentMapIndex]
     onTheMap(currentMap)
 
@@ -43,6 +96,17 @@ function start(){
         actualScore()
     }
     player = playerSpawn(player)
+    
+    if (loadedSaveData && loadedSaveData.player) {
+        player.setLife(loadedSaveData.player.hp)
+        player.setMaxLife(loadedSaveData.player.maxHp)
+        player.setMp(loadedSaveData.player.mp)
+        player.setMaxMp(loadedSaveData.player.mpMax)
+        player.setLevel(loadedSaveData.player.level)
+        player.setScore(loadedSaveData.player.score)
+        loadedSaveData = null
+    }
+    
     // ramdom parameter of the findobject localisation
     obj = ObjSpawn(obj)
     // ramdom parameter of the exit localisation

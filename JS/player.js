@@ -224,6 +224,7 @@ class Player{
         }
 
         if (keys.get('Digit4')){
+            saveCurrentGame()
             window.location.href = "../index.html";
         }
         
