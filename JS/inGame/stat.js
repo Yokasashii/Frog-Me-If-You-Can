@@ -85,5 +85,5 @@ function drawStats(){
 
     // score
     c1.font = Math.floor(canvas1.width * 0.25) + "px Arial"
-    c1.fillText(`${player.score}`, canvas1.width * 0.25, canvas1.height * 0.95)
+    c1.fillText(`${player.score}`, canvas1.width * 0.35, canvas1.height * 0.95)
 }
