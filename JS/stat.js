@@ -1,6 +1,9 @@
 const canvas1 = document.getElementById("canvas1")
 const c1 = canvas1.getContext('2d')
 
+const BackgroundImg = new Image()
+BackgroundImg.src = "../Assets/Background/Sprite - StateSheet.png"
+
 //stat era configuration
 
     function statSize(){
@@ -12,36 +15,39 @@ function drawStats(){
 
     statSize()
 
-    c1.fillRect(0,0, canvas1.width, canvas1.height)
+    if (BackgroundImg.complete && BackgroundImg.naturalWidth > 0) {
+        const scale = Math.max(canvas1.width / BackgroundImg.width, canvas1.height / BackgroundImg.height)
+        const drawWidth = BackgroundImg.width * scale
+        const drawHeight = BackgroundImg.height * scale
+        const offsetX = (canvas1.width - drawWidth) / 2
+        const offsetY = (canvas1.height - drawHeight) / 2
+        c1.drawImage(BackgroundImg, offsetX, offsetY, drawWidth, drawHeight)
+    }
  
     c1.font = "30px Arial";
 
     c1.fillStyle = "white";
 
-    c1.fillText("Stat :", 110, 40);
 
     // basic stat : Health Point, Move Point, Extrat lifes and level
 
     c1.font = "20px Arial";
-    c1.fillText(`HP :         ${player.getStat().hp} / ${player.getStat().maxHp}`, 10, 80);
-    c1.fillText(`MP :         ${player.getStat().mp} / ${player.getStat().mpMax}`, 10, 120);
-    c1.fillText(`EL :          ${player.getStat().el} / ${player.getStat().elMax}`, 10, 160);
-    c1.fillText(`LEVEL :       ${player.getLevel()}`, 10, 180);
+    c1.fillText(`${player.getStat().hp} / ${player.getStat().maxHp}`, 120, 240);
+    c1.fillText(`${player.getStat().mp} / ${player.getStat().mpMax}`, 120, 310);
+    c1.fillText(`${player.getStat().el} / ${player.getStat().elMax}`, 120, 370);
 
     c1.font = "30px Arial";
-    c1.fillText("Inventory :", 70, 220);
 
     
     //all object, café is for MP, chocolate for HP and Vitamine for the next level.
 
     c1.font = "20px Arial";
-    c1.fillText(`Café :          ${player.getInventoryCafe()} / ${player.getInventoryCafeMax()}`, 10, 260);
-    c1.fillText(`Chocolat :    ${player.getInventoryChocolat()} / ${player.getInventoryChocolatMax()}`, 10, 290);
-    c1.fillText(`Vitamine :     ${player.getInventoryVitamine()} / ${player.getInventoryVitamineMax()}`, 10, 320);
+    c1.fillText(`${player.getInventoryCafe()} / ${player.getInventoryCafeMax()}`, 105, 620);
+    c1.fillText(`${player.getInventoryChocolat()} / ${player.getInventoryChocolatMax()}`, 240, 620);
+    c1.fillText(`${player.getInventoryVitamine()} / ${player.getInventoryVitamineMax()}`, 380, 620);
 
     c1.font = "30px Arial";
-    c1.fillText("SCORE :", 70, 380);
 
     c1.font = "100px Arial";
-    c1.fillText(`${player.score}`, 33, 500);
+    c1.fillText(`${player.score}`, 160, 775);
 }
