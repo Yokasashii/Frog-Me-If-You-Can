@@ -14,6 +14,7 @@ const wallNSOImg = new Image()
 const wallNSEImg = new Image()
 const wallDoubleImg = new Image()
 
+//graphic element of a stage
 wallHorizontalImg.src = "../Assets/Environement/Sprite - MurMid-Horizontal.png"
 wallVerticalImg.src = "../Assets/Environement/Sprite - MurMid-Vertical.png"
 wallNEImg.src = "../Assets/Environement/Sprite - MurMid-NordEst.png"
@@ -27,6 +28,7 @@ wallNSOImg.src = "../Assets/Environement/Sprite - MurMid-NordSudOuest.png"
 wallNSEImg.src = "../Assets/Environement/Sprite - MurMid-NordSudEst.png"
 wallDoubleImg.src = "../Assets/Environement/Sprite - MurMid-Double.png"
 
+//global variable of game element
 let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb,currentMap;
 let currentMapIndex = 0;
 
@@ -81,7 +83,7 @@ function saveCurrentGame(){
     console.log("save mise a jour", saveKey)
 }
 
-//first start parameter of a stage
+//start parameter of a new stage
 function start(){
 
     if (loadedSaveData && loadedSaveData.world && loadedSaveData.world.currentMapIndex >= 0) {
@@ -127,6 +129,7 @@ function mapSize(){
     canvas.height = window.innerHeight*7.5/10;
 }
 
+// application of graphic element on the map with the matrixs
 function onTheMap(theCurrentMap){
     const theMap = theCurrentMap
     if (theMap==null) {
@@ -192,6 +195,7 @@ function onTheMap(theCurrentMap){
     }
 }
 
+//define the number of ennemys
 function hasardEnnemis(max){
         return Math.floor(Math.random() * max);
     }
@@ -199,7 +203,6 @@ function hasardEnnemis(max){
 
 
 //draw the game and update the map
-
 function draw(){
     
     player.move()

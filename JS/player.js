@@ -1,3 +1,4 @@
+//global variable of the player
 const playerImg = new Image();
 const attackZoneImgN = new Image();
 const attackZoneImgS = new Image();
@@ -235,11 +236,10 @@ class Player{
     }
 
     // draw the player
-
     draw(){
         if (this.getNorth()){
             if (attackZoneImgN.complete) {
-            c.drawImage(attackZoneImgN, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
+                c.drawImage(attackZoneImgN, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
             }
         }
         
@@ -267,7 +267,6 @@ class Player{
     }
 
     //check if the player is dead or not
-
     die(){
         if (this.getLife() <= 0){
             this.setVelocity(0)
@@ -277,6 +276,7 @@ class Player{
         }
     }
 
+    //check if the ennemy is in the zone when the player attack, if yes the ennemy is heart by the player
     hitTheGoodGuy(enemy,attackPositionX,attackPositionY,height,width){
         if (!enemy){
             return
@@ -320,35 +320,32 @@ class Player{
         }
     }
 
+    //check if one the ennemy is in the attack zone
+    generaltest(bonusX,bonusY){
+        this.hitTheGoodGuy(ennemi1, this.getPositionX()+(bonusX), this.getPositionY()+(bonusY), 110, 110)
+        this.hitTheGoodGuy(ennemi2, this.getPositionX()+(bonusX), this.getPositionY()+(bonusY), 110, 110)
+        this.hitTheGoodGuy(ennemi3, this.getPositionX()+(bonusX), this.getPositionY()+(bonusY), 110, 110)
+        this.hitTheGoodGuy(ennemi4, this.getPositionX()+(bonusX), this.getPositionY()+(bonusY), 110, 110)        
+    }
+
+    //attack depending on the direction of the player
     attackMoment(){
 
         if (this.getheAttack()){
             if (this.getNorth()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
+                this.generaltest(-27.5,-60)
             }
 
             if (this.getSouth()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
+                this.generaltest(-27.5,+7.5)
             }
 
             if (this.getWest()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
+                this.generaltest(-60,-27.5)
             }
 
             if (this.getEst()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
+                this.generaltest(7.5,-27.5)
             }
         }
     }

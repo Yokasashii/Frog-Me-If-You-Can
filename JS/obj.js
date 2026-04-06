@@ -2,6 +2,7 @@ const ObjImg = new Image();
 
 class Obj{
 
+    //constructor of an object
     constructor(x,y,height,width){
         this.listeObj = ["café","chocolat","vitamine"]
         this.listImg = "../Assets/Sprite Box.png"
@@ -12,6 +13,7 @@ class Obj{
         this.status = true
     }
 
+    //getter and setter
     getList(){return this.listeObj}
     getPositionX(){return this.x}
     getPositionY(){return this.y}

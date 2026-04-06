@@ -1,3 +1,4 @@
+// matrice of every map
 const matrice1 = [
 ["$", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "!"],
 ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
@@ -63,6 +64,7 @@ const matrice5 = [
 ["£", "-", "-", "-", "-", "ù", "-", "-", "ù", "-", "-", "ù", "-", "-", "ù", "-", "-", "-", "-", "?"]
 ];
 
+// liste of the serveral map
 const Matricelist = [
 matrice1,
 matrice2,
@@ -70,6 +72,8 @@ matrice3,
 matrice4,
 matrice5
 ];
+
+//function for conversion of pixels in indexs
 
 function canvasToMatrixY(pixelX, canvas) {
     const celluleW = canvas.width / 20;

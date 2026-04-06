@@ -1,7 +1,8 @@
+//global variable of canva Menu
 const canvasMenu = document.getElementById("canvasMenu");
 const cMenu = canvasMenu.getContext("2d");
 
-// menu size configuration
+// size configuration of menu canva 
 function menuSize() {
   canvasMenu.width = window.innerWidth - 20;
   canvasMenu.height = window.innerHeight - 20;
@@ -16,6 +17,7 @@ function drawMenu() {
 
 drawMenu();
 
+//draw the several buttons
 function drawbutton(bouton) {
   cMenu.fillStyle = "grey";
   cMenu.fillRect(bouton.x, bouton.y, bouton.width, bouton.height);
@@ -40,6 +42,7 @@ function isClicking(bouton, x, y) {
   );
 }
 
+//clik for the button
 canvasMenu.addEventListener("click", (e) => {
   const x = e.clientX;
   const y = e.clientY;
@@ -58,6 +61,7 @@ canvasMenu.addEventListener("click", (e) => {
   
 });
 
+//draw the title of the game
 function drawTheTitle(){
 
   cMenu.fillRect(0,0, canvasMenu.width, canvasMenu.height)
@@ -104,7 +108,7 @@ const boutonQuit = {
   message: "Quit",
 };
 
-
+//executution of all menu function
 drawTheTitle()
 drawbutton(boutonPlay);
 drawbutton(boutonRank);

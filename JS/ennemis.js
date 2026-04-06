@@ -3,6 +3,7 @@ const ennemisImg = new Image();
 
 class Ennemis{
 
+    //constructor of an ennemy
     constructor( x, y, velocity, width, height, attack, hp, statusLife, special,enemyCooldown){
         this.name = 'zombie collègue';
         this.img = "../Assets/Character/Sprite - Sylvie.png"
@@ -50,6 +51,7 @@ class Ennemis{
     setSpecial(elt){this.special = elt}
     setenemyLastUsed(elt){this.enemyLastUsed = elt}
 
+    // move if the ennemy is inside and if he don't detect collision
     move(){
 
         const movement = this.getVelocity()
@@ -106,6 +108,7 @@ class Ennemis{
         }
     }
 
+    // heart the player if the ennemy is in front of him
     fight(){
         if (
             player.getPositionX() < this.getPositionX() + this.width &&
@@ -124,6 +127,7 @@ class Ennemis{
         }
     }
 
+    // draw the ennemys if they alive
     drawEnnemis(){
         if (this.getLife()>0){
             ennemisImg.src = this.getImg()

@@ -1,3 +1,4 @@
+// player spawn in free aera
 function playerSpawn(player){
     let theX = 0
     let theY = 0
@@ -16,6 +17,7 @@ function playerSpawn(player){
     return player
 }
 
+// object spawn in free aera
 function ObjSpawn(obj){
     if (obj == null || obj.width === 0 || obj.height === 0) {
         obj = new Obj(hasardEnnemis(canvas.width), hasardEnnemis(canvas.height), 55, 55)
@@ -27,6 +29,7 @@ function ObjSpawn(obj){
     return obj
 }
 
+// exit spawn in free aera
 function exitSpawn(exit){
     exit = new Exit(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height), false)
 
@@ -36,6 +39,7 @@ function exitSpawn(exit){
     return exit
 }
 
+// general spawn of the ennemy
 function ennemySpawn(ennemi1,ennemi2,ennemi3,ennemi4,nb){
     nb = hasardEnnemis(5)
     if (nb == 0){
@@ -59,6 +63,7 @@ function ennemySpawn(ennemi1,ennemi2,ennemi3,ennemi4,nb){
 
     return { ennemi1, ennemi2, ennemi3, ennemi4, nb }
 }
+
 
 function ennemySpawnDetails(ennemy, velocity, width, height, attack, hp, statusLife, special, enemyCooldown){
     let x = 0    
