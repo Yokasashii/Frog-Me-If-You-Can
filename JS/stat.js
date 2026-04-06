@@ -24,30 +24,27 @@ function drawStats(){
         c1.drawImage(BackgroundImg, offsetX, offsetY, drawWidth, drawHeight)
     }
  
-    c1.font = "30px Arial";
-
-    c1.fillStyle = "white";
-
+    c1.fillStyle = "white"
 
     // basic stat : Health Point, Move Point, Extrat lifes and level
+    const baseX = canvas1.width * 0.16
+    const baseY = canvas1.height * 0.32
+    const lineSpacing = canvas1.height * 0.08
 
-    c1.font = "20px Arial";
-    c1.fillText(`${player.getStat().hp} / ${player.getStat().maxHp}`, 120, 240);
-    c1.fillText(`${player.getStat().mp} / ${player.getStat().mpMax}`, 120, 310);
-    c1.fillText(`${player.getStat().el} / ${player.getStat().elMax}`, 120, 370);
+    c1.font = Math.floor(canvas1.width * 0.05) + "px Arial"
+    c1.fillText(`${player.getStat().hp} / ${player.getStat().maxHp}`, baseX, baseY)
+    c1.fillText(`${player.getStat().mp} / ${player.getStat().mpMax}`, baseX, baseY + lineSpacing)
+    c1.fillText(`${player.getStat().el} / ${player.getStat().elMax}`, baseX, baseY + lineSpacing * 2)
 
-    c1.font = "30px Arial";
+    // inventory: café, chocolat, vitamine
+    const inventoryY = canvas1.height * 0.78
+    const inventoryXOffset = canvas1.width * 0.25
 
-    
-    //all object, café is for MP, chocolate for HP and Vitamine for the next level.
+    c1.fillText(`${player.getInventoryCafe()} / ${player.getInventoryCafeMax()}`, baseX, inventoryY)
+    c1.fillText(`${player.getInventoryChocolat()} / ${player.getInventoryChocolatMax()}`, baseX + inventoryXOffset, inventoryY)
+    c1.fillText(`${player.getInventoryVitamine()} / ${player.getInventoryVitamineMax()}`, baseX + inventoryXOffset * 2, inventoryY)
 
-    c1.font = "20px Arial";
-    c1.fillText(`${player.getInventoryCafe()} / ${player.getInventoryCafeMax()}`, 105, 620);
-    c1.fillText(`${player.getInventoryChocolat()} / ${player.getInventoryChocolatMax()}`, 240, 620);
-    c1.fillText(`${player.getInventoryVitamine()} / ${player.getInventoryVitamineMax()}`, 380, 620);
-
-    c1.font = "30px Arial";
-
-    c1.font = "100px Arial";
-    c1.fillText(`${player.score}`, 160, 775);
+    // score
+    c1.font = Math.floor(canvas1.width * 0.25) + "px Arial"
+    c1.fillText(`${player.score}`, canvas1.width * 0.25, canvas1.height * 0.95)
 }

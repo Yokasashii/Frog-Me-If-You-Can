@@ -55,16 +55,24 @@ class Ennemis{
     move(){
 
         const movement = this.getVelocity()
+        const canMoveTo = (pixelY, pixelX) => {
+            const row = canvasToMatrixX(pixelY, canvas)
+            const col = canvasToMatrixY(pixelX, canvas)
+            if (!currentMap || row < 0 || col < 0 || row >= currentMap.length || col >= currentMap[row].length) {
+                return false
+            }
+            return currentMap[row][col] == " "
+        }
         
         ennemisImg.src = this.getImg()
 
         if (player.getPositionY()< this.getPositionY()){
             if (this.getSpecial()=="stopper"){
-                if (currentMap[canvasToMatrixX(this.getPositionY() - movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " " && this.getPositionY() >= exit.getPositionY()-200)  {
+                if (canMoveTo(this.getPositionY() - movement, this.getPositionX()) && this.getPositionY() >= exit.getPositionY()-200)  {
                     this.setPositionY(this.getPositionY()-movement)
                 }
             } else {
-                if (currentMap[canvasToMatrixX(this.getPositionY() - movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " ") {
+                if (canMoveTo(this.getPositionY() - movement, this.getPositionX())) {
                     this.setPositionY(this.getPositionY()-movement)
                 }
             }
@@ -73,11 +81,11 @@ class Ennemis{
 
         if (player.getPositionY()> this.getPositionY()){
             if (this.getSpecial()=="stopper"){
-                if (currentMap[canvasToMatrixX(this.getPositionY()+ 55 + movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " " && this.getPositionY() <= exit.getPositionY()+200){
+                if (canMoveTo(this.getPositionY()+ 55 + movement, this.getPositionX()) && this.getPositionY() <= exit.getPositionY()+200){
                     this.setPositionY(this.getPositionY()+movement)
                 }
             } else {
-                if (currentMap[canvasToMatrixX(this.getPositionY()+ 55 + movement, canvas)][canvasToMatrixY(this.getPositionX(), canvas)] == " "){
+                if (canMoveTo(this.getPositionY()+ 55 + movement, this.getPositionX())){
                     this.setPositionY(this.getPositionY()+movement)
                 }
             }
@@ -85,11 +93,11 @@ class Ennemis{
 
         if (player.getPositionX()< this.getPositionX()){
             if (this.getSpecial()=="stopper"){
-                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()- movement, canvas)] == " " && this.getPositionX() >= exit.getPositionX()-200){
+                if (canMoveTo(this.getPositionY(), this.getPositionX()- movement) && this.getPositionX() >= exit.getPositionX()-200){
                     this.setPositionX(this.getPositionX()-movement)
                 }
             } else {
-                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()- movement, canvas)] == " "){
+                if (canMoveTo(this.getPositionY(), this.getPositionX()- movement)){
                     this.setPositionX(this.getPositionX()-movement)
                 }
             }
@@ -97,11 +105,11 @@ class Ennemis{
 
         if (player.getPositionX()> this.getPositionX()){
             if (this.getSpecial()=="stopper"){
-                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+ 55 + movement, canvas)] == " " && this.getPositionX() <= exit.getPositionX()+200){
+                if (canMoveTo(this.getPositionY(), this.getPositionX()+ 55 + movement) && this.getPositionX() <= exit.getPositionX()+200){
                     this.setPositionX(this.getPositionX()+movement)
                 }
             } else {
-                if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+ 55 + movement, canvas)] == " "){
+                if (canMoveTo(this.getPositionY(), this.getPositionX()+ 55 + movement)){
                     this.setPositionX(this.getPositionX()+movement)
                 }
             }
