@@ -133,7 +133,8 @@ class Ennemis{
             let now = Date.now()
 
             if (now - this.getenemyLastUsed() > this.getCooldown()) {
-                player.setLife(player.getLife()-this.getAttack())
+                const damage = Math.max(0, Math.floor(this.getAttack() * (1 - player.getDefense() / 100)))
+                player.setLife(player.getLife() - damage)
                 this.setenemyLastUsed(now)
             }
             

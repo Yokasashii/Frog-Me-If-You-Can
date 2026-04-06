@@ -21,6 +21,7 @@ class Player{
         this.stat = {
             hp: 100, maxHp: 100, mp : 50, el : 0, mpMax : 50, elMax : 5,
             attack: 15,
+            defense: 15,
             level: 1,}
         this.inventory = {
             "chocolat" : 0,
@@ -63,6 +64,7 @@ class Player{
     getMaxMp(){return this.stat.mpMax}
     getMaxEl(){return this.stat.elMax}
     getAttack(){return this.stat.attack}
+    getDefense(){return this.stat.defense}
     getLevel(){return this.stat.level}
     getInventoryCafe(){return this.inventory.café}
     getInventoryChocolat(){return this.inventory.chocolat}
@@ -95,6 +97,7 @@ class Player{
     setMaxMp(elt){this.stat.mpMax = elt}
     setMaxEl(elt){this.stat.elMax = elt}
     setAttack(elt){this.stat.attack = elt}
+    setDefense(elt){this.stat.defense = elt}
     setLevel(elt){this.stat.level = elt}
     setInventoryCafe(elt){this.inventory.café = elt}
     setInventoryChocolat(elt){this.inventory.chocolat = elt}
@@ -221,6 +224,7 @@ class Player{
                 this.setMp(this.getMaxMp())
                 this.setMaxEl(this.getMaxEl()+1)
                 this.setAttack(this.getAttack()+2)
+                this.setDefense(this.getDefense()+2)
                 this.setLevel(this.getLevel()+1)
                 this.setInventoryCafeMax(this.getInventoryCafeMax()+1)
                 this.setInventoryChocolatMax(this.getInventoryChocolatMax()+1)

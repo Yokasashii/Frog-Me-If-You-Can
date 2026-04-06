@@ -47,6 +47,7 @@ function createDefaultSave() {
             maxHp: 100,
             mp: 50,
             mpMax: 50,
+            defense: 15,
             level: 1,
             score: 0
         },
@@ -77,6 +78,7 @@ function saveCurrentGame(){
             maxHp: player.getMaxLife(),
             mp: player.getMp(),
             mpMax: player.getMaxMp(),
+            defense: player.getDefense(),
             level: player.getLevel(),
             score: player.getScore()
         },
@@ -122,6 +124,7 @@ function start(){
         player.setMaxLife(loadedSaveData.player.maxHp)
         player.setMp(loadedSaveData.player.mp)
         player.setMaxMp(loadedSaveData.player.mpMax)
+        player.setDefense(loadedSaveData.player.defense ?? player.getDefense())
         player.setLevel(loadedSaveData.player.level)
         player.setScore(loadedSaveData.player.score)
         loadedSaveData = null
