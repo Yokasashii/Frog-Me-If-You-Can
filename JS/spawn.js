@@ -17,12 +17,12 @@ function playerSpawn(player){
 }
 
 function ObjSpawn(obj){
-    if (obj == null) {
-        obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55,10)
+    if (obj == null || obj.width === 0 || obj.height === 0) {
+        obj = new Obj(hasardEnnemis(canvas.width), hasardEnnemis(canvas.height), 55, 55)
     }
 
     while (currentMap[canvasToMatrixX(obj.getPositionY(), canvas)][canvasToMatrixY(obj.getPositionX(), canvas)] != " "){
-        obj = new Obj(hasardEnnemis(canvas.width),hasardEnnemis(canvas.height),55,55,10)
+        obj = new Obj(hasardEnnemis(canvas.width), hasardEnnemis(canvas.height), 55, 55)
     }
     return obj
 }

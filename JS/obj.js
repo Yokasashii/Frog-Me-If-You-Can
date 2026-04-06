@@ -9,6 +9,7 @@ class Obj{
         this.width = width
         this.x = x
         this.y = y
+        this.status = true
     }
 
     getList(){return this.listeObj}
@@ -37,7 +38,7 @@ class Obj{
             player.getPositionX() < this.getPositionX() + this.width &&
             player.getPositionX() + 55 > this.getPositionX() &&
             player.getPositionY() < this.getPositionY() + this.height &&
-            player.getPositionY() + 55 > this.getPositionY()
+            player.getPositionY() + 55 > this.getPositionY() && this.status == true
         ) {
             if (player.getInventoryCafe()<player.getInventoryCafeMax() || player.getInventoryChocolat()< player.getInventoryChocolatMax() || player.getInventoryVitamine()< player.getInventoryVitamineMax()){
                 this.height = 0
@@ -47,16 +48,19 @@ class Obj{
                 if (this.listeObj[nb] == "café"){
                     if (player.getInventoryCafe() < player.getInventoryCafeMax()){ 
                         player.setInventoryCafe(player.getInventoryCafe()+1)
+                        this.status == false
                     } 
                     
                 } else if (this.listeObj[nb] == "chocolat"){
                     if (player.getInventoryChocolat() < player.getInventoryChocolatMax()){
                         player.setInventoryChocolat(player.getInventoryChocolat()+1)
+                        this.status == false
                     }
                     
                 } else if (this.listeObj[nb] == "vitamine"){
                     if (player.getInventoryVitamine() < player.getInventoryVitamineMax()){
                         player.setInventoryVitamine(player.getInventoryVitamine() + 1)
+                        this.status == false
                     } 
                 }
             }

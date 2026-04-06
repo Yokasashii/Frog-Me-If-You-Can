@@ -69,7 +69,7 @@ function drawTheTitle(){
   cMenu.fillText(" Frog me if you can !", canvasMenu.width*3/10, canvasMenu.height*0.5/3 );
 
   cMenu.font = "30px Arial";
-  cMenu.fillText("a game by : Vincent Guerini and Maxime Poujol", canvasMenu.width*3.6/10, canvasMenu.height*2.5/3 );
+  cMenu.fillText("a game by : Vincent Guerrini and Maxime Poujol", canvasMenu.width*3.6/10, canvasMenu.height*2.5/3 );
 
 }
 
