@@ -65,22 +65,23 @@ function drawStats(){
     c1.fillStyle = "white"
 
     // basic stat : Health Point, Move Point, Extrat lifes and level
-    const baseX = canvas1.width * 0.16
-    const baseY = canvas1.height * 0.32
+    const baseX = canvas1.width * 0.22
+    const baseX2 = canvas1.width * 0.18
+    const baseY = canvas1.height * 0.31
     const lineSpacing = canvas1.height * 0.08
 
     c1.font = Math.floor(canvas1.width * 0.05) + "px Arial"
     c1.fillText(`${player.getStat().hp} / ${player.getStat().maxHp}`, baseX, baseY)
     c1.fillText(`${player.getStat().mp} / ${player.getStat().mpMax}`, baseX, baseY + lineSpacing)
-    c1.fillText(`${player.getStat().el} / ${player.getStat().elMax}`, baseX, baseY + lineSpacing * 2)
+    c1.fillText(`${player.getStat().el} / ${player.getStat().elMax}`, baseX, baseY + lineSpacing * 1.78)
 
     // inventory: café, chocolat, vitamine
-    const inventoryY = canvas1.height * 0.78
+    const inventoryY = canvas1.height * 0.71
     const inventoryXOffset = canvas1.width * 0.25
 
-    c1.fillText(`${player.getInventoryCafe()} / ${player.getInventoryCafeMax()}`, baseX, inventoryY)
-    c1.fillText(`${player.getInventoryChocolat()} / ${player.getInventoryChocolatMax()}`, baseX + inventoryXOffset, inventoryY)
-    c1.fillText(`${player.getInventoryVitamine()} / ${player.getInventoryVitamineMax()}`, baseX + inventoryXOffset * 2, inventoryY)
+    c1.fillText(`${player.getInventoryCafe()} / ${player.getInventoryCafeMax()}`, baseX2, inventoryY)
+    c1.fillText(`${player.getInventoryChocolat()} / ${player.getInventoryChocolatMax()}`, baseX2 + inventoryXOffset, inventoryY)
+    c1.fillText(`${player.getInventoryVitamine()} / ${player.getInventoryVitamineMax()}`, baseX2 + inventoryXOffset * 2.05, inventoryY)
 
     // score
     c1.font = Math.floor(canvas1.width * 0.25) + "px Arial"
