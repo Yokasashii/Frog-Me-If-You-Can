@@ -74,6 +74,30 @@ const action5 = {
     message: "4 Abandonner"
 }
 
+const actionfight1 = {
+    x: 25,
+    y: 60,
+    width: 250,
+    height:100,
+    message: "attack"
+}
+
+const actionfight2 = {
+    x: 285,
+    y: 60,
+    width: 250,
+    height:100,
+    message: "heal"
+}
+
+const actionfight3 = {
+    x: 545,
+    y: 60,
+    width: 250,
+    height:100,
+    message: "2 café"
+}
+
 // draw all button
 
 drawbutton(action1)

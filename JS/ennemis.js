@@ -17,6 +17,7 @@ class Ennemis{
         this.special = special
         this.enemyCooldown= enemyCooldown
         this.enemyLastUsed = 0;
+        this.priority = null
     }
 
     // getter
@@ -34,6 +35,7 @@ class Ennemis{
     getSpecial(){return this.special}
     getCooldown(){return this.enemyCooldown}
     getenemyLastUsed(){return this.enemyLastUsed}
+    getPriority(){return this.priority}
 
     // setter
 
@@ -49,6 +51,7 @@ class Ennemis{
     setStatusLife(elt){this.statusLife = elt}
     setSpecial(elt){this.special = elt}
     setenemyLastUsed(elt){this.enemyLastUsed = elt}
+    setPriority(elt){this.priority = elt}
 
     move(){
 
@@ -94,6 +97,7 @@ class Ennemis{
             if (now - this.getenemyLastUsed() > this.getCooldown()) {
                 player.setLife(player.getLife()-this.getAttack())
                 this.setenemyLastUsed(now)
+                this.setPriority(now)
             }
             
         }

@@ -22,11 +22,17 @@ class Obj{
 
     //draw the object
 
-    drawObj(){
-        
+    drawObj(x = 0,y = 0){
+        if (x==0){
+            x = this.getPositionX()
+        }
+
+        if (y==0){
+            y = this.getPositionY()
+        }
         ObjImg.src = this.getImg()
         if (ObjImg.complete) {
-            c.drawImage(ObjImg, this.getPositionX(), this.getPositionY(), this.width, this.height)
+            c.drawImage(ObjImg, x, y, this.width, this.height)
         }
     }
 

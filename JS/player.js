@@ -20,6 +20,8 @@ class Player{
         this.stat = {
             hp: 100, maxHp: 100, mp : 50, el : 0, mpMax : 50, elMax : 5,
             attack: 15,
+            defense: 5,
+            speed: 5,
             level: 1,}
         this.inventory = {
             "chocolat" : 0,
@@ -42,6 +44,7 @@ class Player{
         this.south = false
         this.west = false
         this.est = false
+        this.priority = null
     }
 
     //getter
@@ -59,6 +62,8 @@ class Player{
     getMaxMp(){return this.stat.mpMax}
     getMaxEl(){return this.stat.elMax}
     getAttack(){return this.stat.attack}
+    getDefense(){return this.stat.defense}
+    getSpeed(){return this.stat.speed}
     getLevel(){return this.stat.level}
     getInventoryCafe(){return this.inventory.café}
     getInventoryChocolat(){return this.inventory.chocolat}
@@ -75,6 +80,7 @@ class Player{
     getSouth(){return this.south}
     getWest(){return this.west}
     getEst(){return this.est}
+    getPriority(){return this.priority}
 
     //setter
 
@@ -91,6 +97,8 @@ class Player{
     setMaxMp(elt){this.stat.mpMax = elt}
     setMaxEl(elt){this.stat.elMax = elt}
     setAttack(elt){this.stat.attack = elt}
+    setDefense(elt){this.stat.defense = elt}
+    setSpeed(elt){this.stat.speed = elt}
     setLevel(elt){this.stat.level = elt}
     setInventoryCafe(elt){this.inventory.café = elt}
     setInventoryChocolat(elt){this.inventory.chocolat = elt}
@@ -107,6 +115,7 @@ class Player{
     setSouth(elt){this.south = elt}
     setWest(elt){this.west = elt}
     setEst(elt){this.est = elt}
+    setPriority(elt){this.priority = elt}
 
 
     move(){
@@ -209,18 +218,7 @@ class Player{
         }
 
         if (keys.get('Digit3')){
-            if (this.getInventoryVitamine() >= this.getInventoryVitamineMax()){
-                this.setMaxLife(this.getMaxLife()+10)
-                this.setLife(this.getMaxLife())
-                this.setMaxMp(this.getMaxMp()+10)
-                this.setMp(this.getMaxMp())
-                this.setMaxEl(this.getMaxEl()+1)
-                this.setAttack(this.getAttack()+2)
-                this.setLevel(this.getLevel()+1)
-                this.setInventoryCafeMax(this.getInventoryCafeMax()+1)
-                this.setInventoryChocolatMax(this.getInventoryChocolatMax()+1)
-                this.setInventoryVitamine(this.getInventoryVitamine()-10)
-            }
+            this.levelUp()
         }
 
         if (keys.get('Digit4')){
@@ -234,6 +232,7 @@ class Player{
     // draw the player
 
     draw(){
+        
         if (this.getNorth()){
             if (attackZoneImgN.complete) {
             c.drawImage(attackZoneImgN, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
@@ -274,42 +273,20 @@ class Player{
         }
     }
 
-    hitTheGoodGuy(enemy,attackPositionX,attackPositionY,height,width){
-        if (!enemy){
-            return
-        }
-
-        if (
-            attackPositionX < enemy.getPositionX() + 55 &&
-            attackPositionX + width > enemy.getPositionX() &&
-            attackPositionY < enemy.getPositionY() + 55 &&
-            attackPositionY + height > enemy.getPositionY()
-        ) {
-
-            let now = Date.now()
-
-            if (now - lastUsed < cooldown) {
-                console.log("Encore en cooldown !");
-            } else {
-                enemy.setLife(enemy.getLife() - this.getAttack())
-                if (this.getNorth()){
-                    enemy.setPositionY(enemy.getPositionY()-100)
-                }
-
-                if (this.getSouth()){
-                    enemy.setPositionY(enemy.getPositionY()+100)
-                }
-
-                if (this.getEst()){
-                    enemy.setPositionX(enemy.getPositionX()+100)
-                }
-
-                if (this.getWest()){
-                    enemy.setPositionX(enemy.getPositionX()-100)
-                }
-                lastUsed = now
-            }
-            
+    levelUp(){
+        if (this.getInventoryVitamine() >= this.getInventoryVitamineMax()){
+                this.setMaxLife(this.getMaxLife()+10)
+                this.setLife(this.getMaxLife())
+                this.setMaxMp(this.getMaxMp()+10)
+                this.setMp(this.getMaxMp())
+                this.setMaxEl(this.getMaxEl()+1)
+                this.setAttack(this.getAttack()+2)
+                this.setDefense(this.getDefense()+10)
+                this.setSpeed(this.getSpeed()+10)
+                this.setLevel(this.getLevel()+1)
+                this.setInventoryCafeMax(this.getInventoryCafeMax()+1)
+                this.setInventoryChocolatMax(this.getInventoryChocolatMax()+1)
+                this.setInventoryVitamine(this.getInventoryVitamine()-10)
         }
     }
 
@@ -317,31 +294,27 @@ class Player{
 
         if (this.getheAttack()){
             if (this.getNorth()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()-27.5, this.getPositionY()-60, 110, 110)
+                player.setPriority(true)
+                ennemi1.setPriority(false)
+                theFight(player,[ennemi1,ennemi2,ennemi3,ennemi4])
             }
 
             if (this.getSouth()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()-27.5, this.getPositionY()+7.5, 110, 110)
+                player.setPriority(true)
+                ennemi1.setPriority(false)
+                theFight(player,[ennemi1,ennemi2,ennemi3,ennemi4])
             }
 
             if (this.getWest()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()-60, this.getPositionY()-27.5, 110, 110)
+                player.setPriority(true)
+                ennemi1.setPriority(false)
+                theFight(player,[ennemi1,ennemi2,ennemi3,ennemi4])
             }
 
             if (this.getEst()){
-                this.hitTheGoodGuy(ennemi1, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi2, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi3, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
-                this.hitTheGoodGuy(ennemi4, this.getPositionX()+7.5, this.getPositionY()-27.5, 110, 110)
+                player.setPriority(true)
+                ennemi1.setPriority(false)
+                theFight(player,[ennemi1,ennemi2,ennemi3,ennemi4])
             }
         }
     }
