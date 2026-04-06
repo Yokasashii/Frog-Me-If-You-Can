@@ -37,8 +37,8 @@ const saveKey = `frog.slot.${activeSlot}`;
 let rawSave = localStorage.getItem(saveKey);
 let loadedSaveData = null;
 
-if (rawSave == null) {
-    const defaultSave = {
+function createDefaultSave() {
+    return {
         version: 1,
         updatedAt: Date.now(),
         player: {
@@ -53,6 +53,10 @@ if (rawSave == null) {
             currentMapIndex: 0
         }
     }
+}
+
+if (rawSave == null) {
+    const defaultSave = createDefaultSave()
     localStorage.setItem(saveKey, JSON.stringify(defaultSave))
     loadedSaveData = defaultSave
     console.log("save creee", saveKey)
@@ -81,6 +85,14 @@ function saveCurrentGame(){
     }
     localStorage.setItem(saveKey, JSON.stringify(saveData))
     console.log("save mise a jour", saveKey)
+}
+
+function resetCurrentGameToDefault() {
+    const defaultSave = createDefaultSave()
+    localStorage.setItem(saveKey, JSON.stringify(defaultSave))
+    loadedSaveData = defaultSave
+    currentMapIndex = defaultSave.world.currentMapIndex
+    console.log("save remise par defaut")
 }
 
 //start parameter of a new stage

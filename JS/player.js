@@ -272,6 +272,9 @@ class Player{
             this.setVelocity(0)
             this.setLife(0)
             this.setImg("../Assets/Sprite - RIP.png")
+            if (typeof resetCurrentGameToDefault === "function") {
+                resetCurrentGameToDefault()
+            }
             window.location.href = "die.html";
         }
     }
