@@ -35,6 +35,10 @@ class Obj{
     //take the object
 
     take(){
+        if (!this.status || this.width <= 0 || this.height <= 0){
+            return
+        }
+
         if (
             keys.get('KeyE') &&
             player.getPositionX() < this.getPositionX() + this.width &&
@@ -50,19 +54,19 @@ class Obj{
                 if (this.listeObj[nb] == "café"){
                     if (player.getInventoryCafe() < player.getInventoryCafeMax()){ 
                         player.setInventoryCafe(player.getInventoryCafe()+1)
-                        this.status == false
+                        this.status = false
                     } 
                     
                 } else if (this.listeObj[nb] == "chocolat"){
                     if (player.getInventoryChocolat() < player.getInventoryChocolatMax()){
                         player.setInventoryChocolat(player.getInventoryChocolat()+1)
-                        this.status == false
+                        this.status = false
                     }
                     
                 } else if (this.listeObj[nb] == "vitamine"){
                     if (player.getInventoryVitamine() < player.getInventoryVitamineMax()){
                         player.setInventoryVitamine(player.getInventoryVitamine() + 1)
-                        this.status == false
+                        this.status = false
                     } 
                 }
             }

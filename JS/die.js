@@ -53,7 +53,7 @@ canvasDie.addEventListener("click", (e) => {
   }
 
   if (isClicking(boutonQuit, x, y)) {
-    window.location.href = "about:blank";
+    window.location.href = "index.html";
   }
   
 });
@@ -100,7 +100,7 @@ const boutonQuit = {
   y: canvasDie.height / 2 + 80,
   width: boutonWidth,
   height: boutonHeight,
-  message: "Quit",
+  message: "Return to menu",
 };
 
 

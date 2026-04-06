@@ -31,6 +31,7 @@ wallDoubleImg.src = "../Assets/Environement/Sprite - MurMid-Double.png"
 //global variable of game element
 let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb,currentMap;
 let currentMapIndex = 0;
+let theEnd=0
 
 const activeSlot = localStorage.getItem("frog.activeSlot") || "1";
 const saveKey = `frog.slot.${activeSlot}`;
@@ -97,6 +98,11 @@ function resetCurrentGameToDefault() {
 
 //start parameter of a new stage
 function start(){
+    if (theEnd == 10){
+        window.location.href = "theEnd.html";
+    } else {
+        theEnd +=1
+    }
 
     if (loadedSaveData && loadedSaveData.world && loadedSaveData.world.currentMapIndex >= 0) {
         currentMapIndex = loadedSaveData.world.currentMapIndex
