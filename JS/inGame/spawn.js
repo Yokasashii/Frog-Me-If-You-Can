@@ -57,7 +57,7 @@ function ennemySpawn(ennemi1,ennemi2,ennemi3,ennemi4,nb){
         ennemi1 = ennemySpawnDetails(ennemi1, 1.5,55,55,15,10,false,"runner",1500, "../Assets/Character/Sprite - Didier.png")
         ennemi2 = ennemySpawnDetails(ennemi2, 0.8,55,55,20,35,false,"normal",1500, "../Assets/Character/Sprite - Sylvie.png")
         ennemi3 = ennemySpawnDetails(ennemi3, 0.4,100,100,35,75,false,"fat",3000, "../Assets/Character/Sprite - Patron.png")
-        ennemi4 = ennemySpawnDetails(ennemi4, 0.6,55,55,20,35,false,"stopper",2000, "../Assets/Character/Sprite - Patron.png")
+        ennemi4 = ennemySpawnDetails(ennemi4, 0.6,55,55,20,35,false,"stopper",2000, "../Assets/Character/Sprite - Didier.png")
         
     }
 
@@ -65,7 +65,7 @@ function ennemySpawn(ennemi1,ennemi2,ennemi3,ennemi4,nb){
 }
 
 
-function ennemySpawnDetails(ennemy, velocity, width, height, attack, hp, statusLife, special, enemyCooldown){
+function ennemySpawnDetails(ennemy, velocity, width, height, attack, hp, statusLife, special, enemyCooldown,img){
     let x = 0    
     let y = 0
     if (special == "stopper"){
@@ -79,6 +79,6 @@ function ennemySpawnDetails(ennemy, velocity, width, height, attack, hp, statusL
         }
     }
     
-    ennemy = new Ennemis(x,y,velocity,width,height,attack,hp,statusLife,special,enemyCooldown)
+    ennemy = new Ennemis(x,y,velocity,width,height,attack,hp,statusLife,special,enemyCooldown,img)
     return ennemy
 }

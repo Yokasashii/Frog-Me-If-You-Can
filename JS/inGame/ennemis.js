@@ -1,12 +1,11 @@
-const ennemisImg = new Image();
-
-
 class Ennemis{
 
     //constructor of an ennemy
     constructor( x, y, velocity, width, height, attack, hp, statusLife, special,enemyCooldown, img){
         this.name = 'zombie collègue';
-        this.img = img
+        this.img = img || "../Assets/Character/Sprite - Didier.png"
+        this.sprite = new Image()
+        this.sprite.src = this.img
         this.x = x;
         this.y = y; 
         this.width = width
@@ -39,7 +38,10 @@ class Ennemis{
     // setter
 
     setName(elt){this.name = elt}
-    setImg(elt){this.img = elt}
+    setImg(elt){
+        this.img = elt
+        this.sprite.src = this.img
+    }
     setPositionX(elt){this.x = elt}
     setPositionY(elt){this.y = elt}
     setWidth(elt){this.width = elt}
@@ -64,8 +66,6 @@ class Ennemis{
             return currentMap[row][col] == " "
         }
         
-        ennemisImg.src = this.getImg()
-
         if (player.getPositionY()< this.getPositionY()){
             if (this.getSpecial()=="stopper"){
                 if (canMoveTo(this.getPositionY() - movement, this.getPositionX()) && this.getPositionY() >= exit.getPositionY()-200)  {
@@ -114,6 +114,11 @@ class Ennemis{
                 }
             }
         }
+
+        const maxX = Math.max(0, canvas.width - this.getWidth())
+        const maxY = Math.max(0, canvas.height - this.getHeight())
+        this.setPositionX(Math.max(0, Math.min(this.getPositionX(), maxX)))
+        this.setPositionY(Math.max(0, Math.min(this.getPositionY(), maxY)))
     }
 
     // heart the player if the ennemy is in front of him
@@ -138,9 +143,8 @@ class Ennemis{
     // draw the ennemys if they alive
     drawEnnemis(){
         if (this.getLife()>0){
-            ennemisImg.src = this.getImg()
-            if (ennemisImg.complete) {
-                c.drawImage(ennemisImg, this.getPositionX(), this.getPositionY(), 55, 55)
+            if (this.sprite.complete) {
+                c.drawImage(this.sprite, this.getPositionX(), this.getPositionY(), this.getWidth(), this.getHeight())
             }
         } else {
             this.setHeight(0)

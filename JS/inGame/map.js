@@ -141,12 +141,6 @@ function start(){
     
 }
 
-//map configuaration
-function mapSize(){
-    canvas.width = window.innerWidth*8/10
-    canvas.height = window.innerHeight*7.5/10;
-}
-
 // application of graphic element on the map with the matrixs
 function onTheMap(theCurrentMap){
     const theMap = theCurrentMap
@@ -319,8 +313,7 @@ function actualScore(){
     }
 }
 
-
-mapSize()
+universalCanvasSize(canvas,8/10,7.5/10)
 start()
 requestAnimationFrame(draw)
 

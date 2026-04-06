@@ -37,7 +37,10 @@ class Player{
         }
         this.gold = 0
         this.score = 0
-        this.attackImg = "../Assets/Sprite - AttackEffect.png"
+        this.attackImg =  "../Assets/Effect/Sprite - AttackEffectNord.png"
+        this.attackImg2 = "../Assets/Effect/Sprite - AttackEffectEst.png"
+        this.attackImg3 = "../Assets/Effect/Sprite - AttackEffectOuest.png"
+        this.attackImg4 = "../Assets/Effect/Sprite - AttackEffectSud.png"
         this.heAttack = false
         this.north = false
         this.south = false
@@ -115,10 +118,10 @@ class Player{
         const movement = this.getVelocity()
         
         playerImg.src = this.getImg()
-        attackZoneImgN.src = this.getAttackImg()
-        attackZoneImgS.src = this.getAttackImg()
-        attackZoneImgW.src = this.getAttackImg()
-        attackZoneImgE.src = this.getAttackImg()
+        attackZoneImgN.src = this.attackImg
+        attackZoneImgS.src = this.attackImg4
+        attackZoneImgW.src = this.attackImg3
+        attackZoneImgE.src = this.attackImg2
 
         // basic move
 
@@ -298,24 +301,28 @@ class Player{
                 console.log("Encore en cooldown !");
             } else {
                 enemy.setLife(enemy.getLife() - this.getAttack())
-                if (this.getNorth() && enemy.getPositionY() -100 >0){
-                    enemy.setPositionY(enemy.getPositionY()-100)
+                if (this.getNorth() && enemy.getPositionY() -50 >0){
+                    enemy.setPositionY(enemy.getPositionY()-50)
                 } else {
-                    enemy.setPositionY(enemy.getPositionY()+100)
+                    enemy.setPositionY(enemy.getPositionY()+50)
                 }
 
-                if (this.getSouth() && enemy.getPositionY() +100 <canvas.height){
-                    enemy.setPositionY(enemy.getPositionY()+100)
+                if (this.getSouth() && enemy.getPositionY() +50 <canvas.height){
+                    enemy.setPositionY(enemy.getPositionY()+50)
                 } else {
-                    enemy.setPositionY(enemy.getPositionY()-100)
+                    enemy.setPositionY(enemy.getPositionY()-50)
                 }
 
-                if (this.getEst() && enemy.getPositionY() +100 <canvas.width){
-                    enemy.setPositionX(enemy.getPositionX()+100)
+                if (this.getEst() && enemy.getPositionY() +50 <canvas.width){
+                    enemy.setPositionX(enemy.getPositionX()+50)
+                } else {
+                    enemy.setPositionX(enemy.getPositionX()-50)
                 }
 
-                if (this.getWest() && enemy.getPositionY() - 100 <0){
-                    enemy.setPositionX(enemy.getPositionX()-100)
+                if (this.getWest() && enemy.getPositionY() - 50 <0){
+                    enemy.setPositionX(enemy.getPositionX()-50)
+                } else {
+                    enemy.setPositionX(enemy.getPositionX()+50)
                 }
                 lastUsed = now
             }
