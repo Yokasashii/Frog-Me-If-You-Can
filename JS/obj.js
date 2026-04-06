@@ -4,7 +4,7 @@ class Obj{
 
     constructor(x,y,height,width){
         this.listeObj = ["café","chocolat","vitamine"]
-        this.listImg = "../img/tresor.png"
+        this.listImg = "../Assets/Sprite Box.png"
         this.height = height
         this.width = width
         this.x = x

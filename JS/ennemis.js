@@ -5,7 +5,7 @@ class Ennemis{
 
     constructor( x, y, velocity, width, height, attack, hp, statusLife, special,enemyCooldown){
         this.name = 'zombie collègue';
-        this.img = "../img/ennmis.png"
+        this.img = "../Assets/Character/Sprite - Sylvie.png"
         this.x = x;
         this.y = y; 
         this.width = width

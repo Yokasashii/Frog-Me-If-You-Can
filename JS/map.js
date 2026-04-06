@@ -1,8 +1,35 @@
 const canvas = document.getElementById("canvas")
 const c = canvas.getContext('2d')
 
+const wallHorizontalImg = new Image()
+const wallVerticalImg = new Image()
+const wallNEImg = new Image()
+const wallNOImg = new Image()
+const wallSEImg = new Image()
+const wallSOImg = new Image()
+const floorImg = new Image()
+const wallNOEImg = new Image()
+const wallSOEImg = new Image()
+const wallNSOImg = new Image()
+const wallNSEImg = new Image()
+const wallDoubleImg = new Image()
+
+wallHorizontalImg.src = "../Assets/Environement/Sprite - MurMid-Horizontal.png"
+wallVerticalImg.src = "../Assets/Environement/Sprite - MurMid-Vertical.png"
+wallNEImg.src = "../Assets/Environement/Sprite - MurMid-NordEst.png"
+wallNOImg.src = "../Assets/Environement/Sprite - MurMid-NordOuest.png"
+wallSEImg.src = "../Assets/Environement/Sprite - MurMid-SudEst-export.png"
+wallSOImg.src = "../Assets/Environement/Sprite - MurMid-SudOuest.png"
+floorImg.src = "../Assets/Environement/Sprite - Sol.png"
+wallNOEImg.src = "../Assets/Environement/Sprite - MurMid-NordOuestEst.png"
+wallSOEImg.src = "../Assets/Environement/Sprite - MurMid-SudOuestEst.png"
+wallNSOImg.src = "../Assets/Environement/Sprite - MurMid-NordSudOuest.png"
+wallNSEImg.src = "../Assets/Environement/Sprite - MurMid-NordSudEst.png"
+wallDoubleImg.src = "../Assets/Environement/Sprite - MurMid-Double.png"
+
 let player, obj, exit, ennemi1, ennemi2, ennemi3, ennemi4,nb,currentMap;
 let currentMapIndex = 0;
+
 
 
 //first start parameter of a stage
@@ -48,9 +75,54 @@ function onTheMap(theCurrentMap){
     for (let x = 0; x < theMap.length; x++){
         for (let y = 0; y < theMap[x].length; y++){
             const tile = theMap[x][y]
-            if (tile !== " "){
-                c.fillStyle = "black"
-                c.fillRect(y * celluleW, x * celluleH, celluleW, celluleH)
+            if (tile === "-"){
+                if (wallHorizontalImg.complete) {
+                    c.drawImage(wallHorizontalImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile === "|"){
+                if (wallVerticalImg.complete) {
+                    c.drawImage(wallVerticalImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == " "){
+                if (floorImg.complete) {
+                    c.drawImage(floorImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "$"){
+                if (wallNEImg.complete) {
+                    c.drawImage(wallNEImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "£"){
+                if (wallSEImg.complete) {
+                    c.drawImage(wallSEImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "!"){
+                if (wallNOImg.complete) {
+                    c.drawImage(wallNOImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "?"){
+                if (wallSOImg.complete) {
+                    c.drawImage(wallSOImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "%"){
+                if (wallNOEImg.complete) {
+                    c.drawImage(wallNOEImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "ù"){
+                if (wallSOEImg.complete) {
+                    c.drawImage(wallSOEImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "µ"){
+                if (wallNSOImg.complete) {
+                    c.drawImage(wallNSOImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "§"){
+                if (wallNSEImg.complete) {
+                    c.drawImage(wallNSEImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
+            } else if (tile == "."){
+                if (wallDoubleImg.complete) {
+                    c.drawImage(wallDoubleImg, y * celluleW, x * celluleH, celluleW, celluleH)
+                }
             }
         }
     }
@@ -171,3 +243,6 @@ function actualScore(){
 mapSize()
 start()
 requestAnimationFrame(draw)
+
+const Slot = localStorage.getItem("frog.activeSlot")
+console.log(Slot)

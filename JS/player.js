@@ -15,6 +15,8 @@ class Player{
         this.position = position
         this.velocity = velocity
         this.img = img
+        this.spriteLeftPath = "../Assets/Character/Sprite - PlayerL.png"
+        this.spriteRightPath = "../Assets/Character/Sprite - PlayerR.png"
         this.stat = {
             hp: 100, maxHp: 100, mp : 50, el : 0, mpMax : 50, elMax : 5,
             attack: 15,
@@ -34,7 +36,7 @@ class Player{
         }
         this.gold = 0
         this.score = 0
-        this.attackImg = "../img/attackZone.png"
+        this.attackImg = "../Assets/Sprite - AttackEffect.png"
         this.heAttack = false
         this.north = false
         this.south = false
@@ -139,6 +141,7 @@ class Player{
             if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX() - movement, canvas)] == " "){
                 this.setPositionX(this.getPositionX()-movement)
             }
+            this.setImg(this.spriteLeftPath)
             this.setWest(true)
             this.setEst(false)
         }
@@ -147,6 +150,7 @@ class Player{
             if (currentMap[canvasToMatrixX(this.getPositionY(), canvas)][canvasToMatrixY(this.getPositionX()+55 + movement, canvas)] == " "){
                 this.setPositionX(this.getPositionX()+movement)
             }
+            this.setImg(this.spriteRightPath)
             this.setWest(false)
             this.setEst(true)
         }
@@ -264,7 +268,7 @@ class Player{
         if (this.getLife() <= 0){
             this.setVelocity(0)
             this.setLife(0)
-            this.setImg("img/die.png")
+            this.setImg("../Assets/Sprite - RIP.png")
             window.location.href = "die.html";
         }
     }

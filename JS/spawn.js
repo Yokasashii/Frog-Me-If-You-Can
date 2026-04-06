@@ -7,7 +7,7 @@ function playerSpawn(player){
     }
     
     if (player == null){
-        player = new Player("louis",{x : theX, y : theY}, 5,"../img/player.png")
+        player = new Player("louis",{x : theX, y : theY}, 5,"../Assets/Character/Sprite - PlayerL.png")
     } else {
         player.setPositionX(theX)
         player.setPositionY(theY)

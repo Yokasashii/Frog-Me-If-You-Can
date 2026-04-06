@@ -45,7 +45,7 @@ canvasMenu.addEventListener("click", (e) => {
   const y = e.clientY;
 
   if (isClicking(boutonPlay, x, y)) {
-    window.location.href = "HTML/game.html";
+    window.location.href = "HTML/save.html";
   }
 
   if (isClicking(boutonRank, x, y)) {
