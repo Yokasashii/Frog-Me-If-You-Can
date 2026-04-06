@@ -4,9 +4,9 @@ const ennemisImg = new Image();
 class Ennemis{
 
     //constructor of an ennemy
-    constructor( x, y, velocity, width, height, attack, hp, statusLife, special,enemyCooldown){
+    constructor( x, y, velocity, width, height, attack, hp, statusLife, special,enemyCooldown, img){
         this.name = 'zombie collègue';
-        this.img = "../Assets/Character/Sprite - Sylvie.png"
+        this.img = img
         this.x = x;
         this.y = y; 
         this.width = width
