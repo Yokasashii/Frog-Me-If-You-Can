@@ -70,14 +70,14 @@ function drawTop5Scores() {
   cRank.font = "36px Arial"
   cRank.fillText(
     "Top 5 Scores",
-    canvasRank.width * 0.08,
+    canvasRank.width * 0.38,
     canvasRank.height * 0.25,
   );
 
   cRank.font = "28px Arial";
   for (let index = 0; index < maxScore; index++) {
     const y = canvasRank.height * 0.25 + 45 + index * 38;
-    cRank.fillText(`${index + 1}. ${top5[index]}`, canvasRank.width * 0.08, y)
+    cRank.fillText(`${index + 1}. ${top5[index]}`, canvasRank.width * 0.4, y)
   }
 }
 
@@ -95,7 +95,7 @@ function drawTheTitle() {
   cRank.font = "32px Arial";
   cRank.fillText(
     `Best score: ${getBestScore()}`,
-    canvasRank.width * 0.34,
+    canvasRank.width * 0.5,
     canvasRank.height * 0.25,
   );
 }
