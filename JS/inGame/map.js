@@ -90,6 +90,36 @@ function saveCurrentGame(){
     console.log("save mise a jour", saveKey)
 }
 
+function saveScoreToRank(score) {
+    const rankStorageKey = "frog.top5Scores"
+    const maxScore = 5
+    function normalizeTop5(scores) {
+        if (!Array.isArray(scores)) {
+            return Array(maxScore).fill(0)
+        }
+        const normalized = scores
+            .map((value) => Number(value) || 0)
+            .sort((a, b) => b - a)
+            .slice(0, maxScore)
+
+        while (normalized.length < maxScore) {
+            normalized.push(0)
+        }
+        return normalized
+    }
+    const newScore = Number(score) || 0
+    const rawTop5 = localStorage.getItem(rankStorageKey)
+    let top5 = []
+
+    try {
+        top5 = rawTop5 ? JSON.parse(rawTop5) : []
+    } catch {
+        top5 = []
+    }
+    top5.push(newScore)
+    localStorage.setItem(rankStorageKey, JSON.stringify(normalizeTop5(top5)))
+}
+
 function resetCurrentGameToDefault() {
     const defaultSave = createDefaultSave()
     localStorage.setItem(saveKey, JSON.stringify(defaultSave))
@@ -101,6 +131,10 @@ function resetCurrentGameToDefault() {
 //start parameter of a new stage
 function start(){
     if (theEnd == 10){
+        if (player) {
+            saveCurrentGame()
+            saveScoreToRank(player.getScore())
+        }
         window.location.href = "theEnd.html";
     } else {
         theEnd +=1

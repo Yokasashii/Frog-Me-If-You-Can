@@ -47,6 +47,7 @@ class Player{
         this.south = false
         this.west = false
         this.est = false
+        this.hasHandledDeath = false
     }
 
     //getter
@@ -276,9 +277,16 @@ class Player{
     //check if the player is dead or not
     die(){
         if (this.getLife() <= 0){
+            if (this.hasHandledDeath) {
+                return
+            }
+            this.hasHandledDeath = true
             this.setVelocity(0)
             this.setLife(0)
             this.setImg("../Assets/Sprite - RIP.png")
+            if (typeof saveScoreToRank === "function") {
+                saveScoreToRank(this.getScore())
+            }
             if (typeof resetCurrentGameToDefault === "function") {
                 resetCurrentGameToDefault()
             }
